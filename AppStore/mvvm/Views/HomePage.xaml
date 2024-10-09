@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStore.mvvm.Views.LoginPage"
+             xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
+             x:DataType="viewModels:LoginViewModel"
+             Title="{Binding Title}"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="0.1" />
+            <GradientStop Color="#FFFFFF" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="*, Auto">
+        <VerticalStackLayout Grid.Row="0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="20">
+            <Image Source="logo.png"
+                   HeightRequest="200"
+                   WidthRequest="200"/>
+            <Label Text="Ferretería El Diablo"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+            <Label Text="Bienvenido Emiliano"
+                   FontSize="18"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, *, *, *"
+              BackgroundColor="White"
+              Padding="10">
+            <VerticalStackLayout Grid.Column="0">
+                <ImageButton Source="home.png"
+                             HeightRequest="24"
+                             WidthRequest="24"
+                             Command="{Binding HomeCommand}"/>
+                <Label Text="Home" 
+                       FontSize="12" 
+                       TextColor="Black" 
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1">
+                <ImageButton Source="usuario.png"
+                             HeightRequest="24"
+                             WidthRequest="24"
+                             Command="{Binding UsuariosCommand}"/>
+                <Label Text="Usuarios" 
+                       FontSize="12" 
+                       TextColor="Black" 
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="2">
+                <ImageButton Source="carro.png"
+                             HeightRequest="24"
+                             WidthRequest="24"
+                             Command="{Binding CarritoCommand}"/>
+                <Label Text="Carrito" 
+                       FontSize="12" 
+                       TextColor="Black" 
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="3">
+                <ImageButton Source="pedido.png"
+                             HeightRequest="24"
+                             WidthRequest="24"
+                             Command="{Binding PedidosCommand}"/>
+                <Label Text="Pedidos" 
+                       FontSize="12" 
+                       TextColor="Black" 
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

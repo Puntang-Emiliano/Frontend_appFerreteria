@@ -18,9 +18,8 @@ public partial class LoginViewModel : BaseViewModel
     [RelayCommand]
     public async Task LoginAsync2()
     {
-        // await Application.Current.MainPage.DisplayAlert("Login", "Login", "Ok");
-
-        await Application.Current.MainPage.Navigation.PushAsync(new ProductoListaPage(new ProductoListaViewModel()));
+        // Navegar a la página HomePage después del login exitoso
+        await Application.Current.MainPage.Navigation.PushAsync(new HomePage(new HomeViewModel()));
     }
 
     [RelayCommand]
