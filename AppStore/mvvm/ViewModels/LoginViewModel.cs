@@ -2,64 +2,59 @@
 using AppStore.mvvm.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls.Shapes;
-using System.Net;
+using System.Threading.Tasks;
 
-namespace AppStore.mvvm.ViewModels;
-
-public partial class LoginViewModel : BaseViewModel
+namespace AppStore.mvvm.ViewModels
 {
-
-
-    [ObservableProperty] private string email = string.Empty;
-    [ObservableProperty] private string contraseña = string.Empty;
-    [ObservableProperty] private string message = string.Empty;
-
-    [RelayCommand]
-    public async Task LoginAsync2()
+    public partial class LoginViewModel : BaseViewModel
     {
-        // Navegar a la página HomePage después del login exitoso
-        await Application.Current.MainPage.Navigation.PushAsync(new HomePage(new HomeViewModel()));
-    }
+        [ObservableProperty] private string email = string.Empty;
+        [ObservableProperty] private string contraseña = string.Empty;
+        [ObservableProperty] private string message = string.Empty;
 
-    [RelayCommand]
-    public async Task LoginAsync()
-    {
-        if (!IsBusy)
+        [RelayCommand]
+        public async Task LoginAsync()
         {
-            IsBusy = true;
-
-            if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(contraseña))
+            if (!IsBusy)
             {
-                var apiClient = new ApiService();
+                IsBusy = true;
 
-                try
+                if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(contraseña))
                 {
-                    var login = await apiClient.ValidarLogin(email, contraseña);
+                    var apiClient = new ApiService();
 
-                    // Si la llamada es exitosa y usuario_id es diferente de 0
-                    Transport.usuario_id = login.usuario_id;
-                    Transport.nombre = login.nombre;
-                    Transport.email = login.email;
+                    try
+                    {
+                        var login = await apiClient.ValidarLogin(email, contraseña);
 
-                    await Application.Current.MainPage.DisplayAlert("Atención", "Éxito", "Aceptar");
+                        if (login != null && login.usuario_id != 0)
+                        {
+                            Transport.usuario_id = login.usuario_id;
+                            Transport.nombre = login.nombre;
+                            Transport.email = login.email;
 
-                    // Navega a la siguiente página (después de un inicio de sesión exitoso)
-                    await Application.Current.MainPage.Navigation.PushAsync(new ProductoListaPage(new ProductoListaViewModel()));
+                            await Application.Current.MainPage.DisplayAlert("Atención", "Inicio de sesión exitoso", "Aceptar");
+
+                            // Navega a la siguiente página (por ejemplo, la lista de productos)
+                            await Application.Current.MainPage.Navigation.PushAsync(new HomePage(new HomeViewModel()));
+                        }
+                        else
+                        {
+                            Message = "Credenciales incorrectas. Intente nuevamente.";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = $"Error: {ex.Message}";
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Atención", ex.Message, "Aceptar");
+                    Message = "Las credenciales son obligatorias. Verifique!";
                 }
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Atención", "Las credenciales son obligatorias. Verifique!", "Aceptar");
-            }
 
-            IsBusy = false;
+                IsBusy = false;
+            }
         }
     }
-
-
 }

@@ -1,14 +1,13 @@
 using AppStore.mvvm.ViewModels;
 
-namespace AppStore.mvvm.Views;
-
-public partial class LoginPage : ContentPage
+namespace AppStore.mvvm.Views
 {
-    private LoginViewModel viewModel;
-
-    public LoginPage()
+    public partial class LoginPage : ContentPage
     {
-        InitializeComponent(); // Debe estar antes de BindingContext
-        BindingContext = viewModel = new LoginViewModel();
+        public LoginPage(LoginViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
 }

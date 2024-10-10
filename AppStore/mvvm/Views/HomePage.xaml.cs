@@ -6,9 +6,8 @@ namespace AppStore.mvvm.Views
     {
         public HomePage(HomeViewModel viewModel)
         {
-          
-            BindingContext = viewModel; 
-             InitializeComponent();
+            BindingContext = viewModel;
+            InitializeComponent();
         }
     }
 }

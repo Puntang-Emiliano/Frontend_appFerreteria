@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppStore.mvvm.Views.LoginPage"
              xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
-             x:DataType="viewModels:LoginViewModel"
+             x:Class="AppStore.mvvm.Views.HomePage"
+             x:DataType="viewModels:HomeViewModel"
              Title="{Binding Title}"
              BackgroundColor="Transparent">
 
+    <!-- Fondo con gradiente -->
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
             <GradientStop Color="#B12E2E" Offset="0.1" />
@@ -14,7 +15,9 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
+    <!-- Layout principal en grid -->
     <Grid RowDefinitions="*, Auto">
+        <!-- Contenido superior: logo y saludo -->
         <VerticalStackLayout Grid.Row="0"
                              VerticalOptions="Center"
                              HorizontalOptions="Center"
@@ -27,12 +30,13 @@
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center"/>
-            <Label Text="Bienvenido Emiliano"
+            <Label Text="Bienvenido, {Binding Nombre}"
                    FontSize="18"
                    TextColor="White"
                    HorizontalOptions="Center"/>
         </VerticalStackLayout>
 
+        <!-- Barra de navegación en la parte inferior -->
         <Grid Grid.Row="1"
               ColumnDefinitions="*, *, *, *"
               BackgroundColor="White"

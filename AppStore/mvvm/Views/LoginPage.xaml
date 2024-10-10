@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppStore.mvvm.Views.LoginPage"
              xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
+             x:Class="AppStore.mvvm.Views.LoginPage"
              x:DataType="viewModels:LoginViewModel"
              Title="{Binding Title}"             
              BackgroundColor="Transparent">
@@ -68,7 +68,7 @@
 
         <!-- Social Login Section -->
         <StackLayout Orientation="Vertical" HorizontalOptions="Center" Spacing="20">
-            <Label Text="O continúe con" FontSize="14" TextColor="black" HorizontalOptions="Center" />
+            <Label Text="O continúe con" FontSize="14" TextColor="Black" HorizontalOptions="Center" />
 
             <!-- Social Media Icons -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
