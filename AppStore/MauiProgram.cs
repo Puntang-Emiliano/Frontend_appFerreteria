@@ -1,5 +1,6 @@
 ﻿using AppStore.mvvm.ViewModels;
 using AppStore.mvvm.Views;
+using AppStore.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace AppStore
@@ -19,9 +20,13 @@ namespace AppStore
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            // Registro de servicios
+            builder.Services.AddSingleton<ApiService>(); // Registra ApiService como singleton
+            builder.Services.AddTransient<UsuariosViewModel>(); // Registra UsuariosViewModel como transient
+
 #if DEBUG
-    		builder.Logging.AddDebug();
-#endif                    
+            builder.Logging.AddDebug();
+#endif
 
             return builder.Build();
         }

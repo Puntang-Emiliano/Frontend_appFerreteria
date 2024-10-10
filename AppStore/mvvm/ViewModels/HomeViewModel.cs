@@ -40,7 +40,7 @@ namespace AppStore.mvvm.ViewModels
         // Comando para la navegación a la página Usuarios
         private async void OnUsuariosCommandExecuted()
         {
-            await Shell.Current.GoToAsync("//UsuariosPage");
+            await Shell.Current.GoToAsync(nameof(UsuariosPage));
         }
 
         // Comando para la navegación a la página Carrito

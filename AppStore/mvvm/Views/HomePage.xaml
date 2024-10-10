@@ -10,8 +10,8 @@
     <!-- Fondo con gradiente -->
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#B12E2E" Offset="0.1" />
-            <GradientStop Color="#FFFFFF" Offset="1.0" />
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#FFFFFF" Offset="0.1" />
         </LinearGradientBrush>
     </ContentPage.Background>
 
@@ -30,10 +30,10 @@
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center"/>
-            <Label Text="Bienvenido, {Binding Nombre}"
-                   FontSize="18"
-                   TextColor="White"
-                   HorizontalOptions="Center"/>
+            <Label Text="{Binding Nombre, StringFormat='Bienvenido {0}'}"
+            FontSize="18"
+             TextColor="White"
+            HorizontalOptions="Center"/>
         </VerticalStackLayout>
 
         <!-- Barra de navegación en la parte inferior -->
