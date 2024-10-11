@@ -7,7 +7,6 @@
              Title="{Binding Title}"
              BackgroundColor="Transparent">
 
-    <!-- Fondo con gradiente -->
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
             <GradientStop Color="#B12E2E" Offset="1.0" />
@@ -15,9 +14,7 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <!-- Layout principal en grid -->
     <Grid RowDefinitions="*, Auto">
-        <!-- Contenido superior: logo y saludo -->
         <VerticalStackLayout Grid.Row="0"
                              VerticalOptions="Center"
                              HorizontalOptions="Center"
@@ -31,12 +28,11 @@
                    TextColor="White"
                    HorizontalOptions="Center"/>
             <Label Text="{Binding Nombre, StringFormat='Bienvenido {0}'}"
-            FontSize="18"
-             TextColor="White"
-            HorizontalOptions="Center"/>
+                   FontSize="18"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
         </VerticalStackLayout>
 
-        <!-- Barra de navegación en la parte inferior -->
         <Grid Grid.Row="1"
               ColumnDefinitions="*, *, *, *"
               BackgroundColor="White"
@@ -45,7 +41,7 @@
                 <ImageButton Source="home.png"
                              HeightRequest="24"
                              WidthRequest="24"
-                             Command="{Binding HomeCommand}"/>
+                             Command="{Binding GoToHomePageCommand}"/>
                 <Label Text="Home" 
                        FontSize="12" 
                        TextColor="Black" 
@@ -55,7 +51,7 @@
                 <ImageButton Source="usuario.png"
                              HeightRequest="24"
                              WidthRequest="24"
-                             Command="{Binding UsuariosCommand}"/>
+                             Command="{Binding GoToUsuariosPageCommand}"/>
                 <Label Text="Usuarios" 
                        FontSize="12" 
                        TextColor="Black" 
@@ -65,7 +61,7 @@
                 <ImageButton Source="carro.png"
                              HeightRequest="24"
                              WidthRequest="24"
-                             Command="{Binding CarritoCommand}"/>
+                             Command="{Binding GoToCarritoPageCommand}"/>
                 <Label Text="Carrito" 
                        FontSize="12" 
                        TextColor="Black" 
@@ -75,7 +71,7 @@
                 <ImageButton Source="pedido.png"
                              HeightRequest="24"
                              WidthRequest="24"
-                             Command="{Binding PedidosCommand}"/>
+                             Command="{Binding GoToPedidosPageCommand}"/>
                 <Label Text="Pedidos" 
                        FontSize="12" 
                        TextColor="Black" 
