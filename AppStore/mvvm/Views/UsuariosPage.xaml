@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStore.mvvm.Views.UsuariosPage"
+             Title="Usuarios">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Lista de Usuarios"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start" />
+
+            <Button Text="Cargar Usuarios"
+                    Command="{Binding CargarUsuariosCommand}"
+                    BackgroundColor="#B12E2E"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start" />
+
+            <ListView ItemsSource="{Binding Usuarios}" 
+                      HasUnevenRows="True"
+                      VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding nombre}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="18"/>
+                                <Label Text="{Binding email}" />
+                                <Label Text="{Binding direccion}" />
+                                <Label Text="{Binding rol}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

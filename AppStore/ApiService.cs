@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Net.Http.Json;
 using System.Text;
 using System.Net;
+using AppStore.Models;
 
 
 namespace AppStore;
@@ -101,6 +102,41 @@ public class ApiService
         }
     }
 
+    public async Task<List<Usuario>> GetUsuarios()
+    {
+        string FINAL_URL = BASE_URL + "usuarios"; // Asegúrate de que este endpoint esté configurado en tu API
+
+        try
+        {
+            var response = await httpClient.GetAsync(FINAL_URL);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                if (!string.IsNullOrWhiteSpace(jsonData))
+                {
+                    var responseObject = JsonSerializer.Deserialize<List<Usuario>>(jsonData,
+                        new JsonSerializerOptions
+                        {
+                            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                            WriteIndented = true
+                        });
+                    return responseObject!;
+                }
+                else
+                {
+                    throw new Exception("Resource Not Found");
+                }
+            }
+            else
+            {
+                throw new Exception("Request failed with status code " + response.StatusCode);
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 
     /*
     public static async Task<bool> AgregarProducto(Producto _producto)

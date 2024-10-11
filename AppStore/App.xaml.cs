@@ -1,5 +1,6 @@
 ﻿using AppStore.mvvm.Views;
 using AppStore.mvvm.ViewModels;
+using AppStore.ViewModels;
 
 namespace AppStore
 {
@@ -11,6 +12,7 @@ namespace AppStore
 
             // Instanciar el LoginViewModel y pasarlo a la LoginPage
             var loginViewModel = new LoginViewModel();
+           
             MainPage = new NavigationPage(new LoginPage(loginViewModel));
         }
     }

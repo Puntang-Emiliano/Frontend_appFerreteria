@@ -93,6 +93,9 @@
 	  <MauiXaml Update="mvvm\Views\ProductoModificarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="mvvm\Views\UsuariosPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

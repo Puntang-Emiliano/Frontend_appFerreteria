@@ -1,58 +1,41 @@
 ﻿using AppStore.mvvm.Models;
 using AppStore.mvvm.Views;
+using AppStore.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls.Shapes;
-using System.Net;
+using Microsoft.Maui.Controls;
+using System.Threading.Tasks;
 
 namespace AppStore.mvvm.ViewModels
 {
     public partial class HomeViewModel : BaseViewModel
     {
-        
         [ObservableProperty]
-        private string nombre = Transport.nombre;  // Aquí puedes asignar dinámicamente el nombre
+        private string nombre = Transport.nombre;
 
         // Comandos para la navegación
-        public IRelayCommand HomeCommand { get; }
-        public IRelayCommand UsuariosCommand { get; }
-        public IRelayCommand CarritoCommand { get; }
-        public IRelayCommand PedidosCommand { get; }
-
-        // Constructor
-        public HomeViewModel()
+        [RelayCommand]
+        public async Task GoToHomePage()
         {
-            Title = "Menú";  // Título de la página
-
-            // Inicialización de los comandos
-            HomeCommand = new RelayCommand(OnHomeCommandExecuted);
-            UsuariosCommand = new RelayCommand(OnUsuariosCommandExecuted);
-            CarritoCommand = new RelayCommand(OnCarritoCommandExecuted);
-            PedidosCommand = new RelayCommand(OnPedidosCommandExecuted);
+            await Application.Current.MainPage.Navigation.PushAsync(new HomePage(this));  // Navega a HomePage
         }
 
-        // Comando para la navegación a la página Home
-        private async void OnHomeCommandExecuted()
+        [RelayCommand]
+        public async Task GoToUsuariosPage()
         {
-            await Shell.Current.GoToAsync("//HomePage");
+            await Application.Current.MainPage.Navigation.PushAsync(new UsuariosPage(new UsuariosViewModel(new ApiService())));  // Navega a UsuariosPage
         }
 
-        // Comando para la navegación a la página Usuarios
-        private async void OnUsuariosCommandExecuted()
+        [RelayCommand]
+        public async Task GoToCarritoPage()
         {
-            await Shell.Current.GoToAsync("//UsuariosPage");
+          //  await Application.Current.MainPage.Navigation.PushAsync(new CarritoPage());  // Navega a CarritoPage
         }
 
-        // Comando para la navegación a la página Carrito
-        private async void OnCarritoCommandExecuted()
+        [RelayCommand]
+        public async Task GoToPedidosPage()
         {
-            await Shell.Current.GoToAsync("//CarritoPage");
-        }
-
-        // Comando para la navegación a la página Pedidos
-        private async void OnPedidosCommandExecuted()
-        {
-            await Shell.Current.GoToAsync("//PedidosPage");
+            ///await Application.Current.MainPage.Navigation.PushAsync(new PedidosPage());  // Navega a PedidosPage
         }
     }
 }
