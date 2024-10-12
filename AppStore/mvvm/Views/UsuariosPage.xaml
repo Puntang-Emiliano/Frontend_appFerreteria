@@ -5,35 +5,86 @@
              Title="Usuarios">
     <ContentPage.Content>
         <StackLayout Padding="20">
+            <!-- Título de la página -->
             <Label Text="Lista de Usuarios"
                    FontSize="24"
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
 
+            <!-- Botón para cargar usuarios -->
             <Button Text="Cargar Usuarios"
                     Command="{Binding CargarUsuariosCommand}"
                     BackgroundColor="#B12E2E"
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="10"
+                      Margin="5"
                     Padding="10"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Start" />
 
+            <!-- Botón para mostrar/ocultar formulario de agregar usuario -->
+            <Button Text="Agregar Usuario"
+                    Command="{Binding GoToUsuariosAgregarCommand}"
+                    BackgroundColor="#2EB1B1"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Margin="5"
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start" />
+
+            <!-- Formulario para agregar usuario, inicialmente oculto -->
+        
+
+            <!-- Lista de usuarios -->
             <ListView ItemsSource="{Binding Usuarios}" 
                       HasUnevenRows="True"
+                      SeparatorVisibility="None"
                       VerticalOptions="FillAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding nombre}" 
-                                       FontAttributes="Bold" 
-                                       FontSize="18"/>
-                                <Label Text="{Binding email}" />
-                                <Label Text="{Binding direccion}" />
-                                <Label Text="{Binding rol}" />
-                            </StackLayout>
+                            <Frame Margin="10,5"
+                                   Padding="10"
+                                   CornerRadius="20"
+                                   HasShadow="True"
+                                   BorderColor="LightGray"
+                                   BackgroundColor="#FFECECEC">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Imagen circular -->
+                                    <Image Source="usuarios.png" 
+                                           HeightRequest="50" 
+                                           WidthRequest="50" 
+                                           Aspect="AspectFill" 
+                                           HorizontalOptions="Start" 
+                                           VerticalOptions="Center">
+                                        <Image.Clip>
+                                            <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
+                                        </Image.Clip>
+                                    </Image>
+
+                                    <!-- Información de usuario -->
+                                    <StackLayout Grid.Column="1" Padding="10,0" VerticalOptions="Center">
+                                        <Label Text="{Binding nombre}" 
+                                               FontAttributes="Bold" 
+                                               FontSize="18"
+                                               TextColor="Black"/>
+                                        <Label Text="{Binding email}" 
+                                               FontSize="14" 
+                                               TextColor="Gray"/>
+                                        <Label Text="{Binding rol}" 
+                                               FontSize="14" 
+                                               TextColor="Gray"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

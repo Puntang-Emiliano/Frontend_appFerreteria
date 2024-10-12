@@ -3,10 +3,12 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using AppStore.mvvm.Models;
 using AppStore.Models;
+using AppStore.mvvm.ViewModels;
+using AppStore.mvvm.Views;
 
 namespace AppStore.ViewModels
 {
-    public class UsuariosViewModel
+    public partial class UsuariosViewModel : BaseViewModel
     {
         private readonly ApiService _apiService; // Inyección del ApiService
         public ObservableCollection<Usuario> Usuarios { get; } = new ObservableCollection<Usuario>();
@@ -36,5 +38,11 @@ namespace AppStore.ViewModels
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
+        [RelayCommand]
+        public async Task GoToUsuariosAgregar()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new UsuarioAgregarPage(new UsuarioAgregarViewModel(new ApiService())));  // Navega a UsuariosPage
+        }
+
     }
 }
