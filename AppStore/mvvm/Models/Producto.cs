@@ -2,12 +2,10 @@
 
 public class Producto
 {
-    public int Id { get; set; }
-    public string? Nombre { get; set; }
-    public string? Descripcion { get; set; }
-    public int Stock { get; set; }
-    public string RutaImagen { get; set; }
-    public decimal Precio { get; set; }
-    public int Categoria { get; set; }
+    public int producto_id { get; set; }
+    public string nombre { get; set; }
+    public string descripcion { get; set; }
+    public decimal precio { get; set; }
+    public int stock { get; set; }
 
 }

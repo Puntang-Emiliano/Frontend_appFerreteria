@@ -29,13 +29,14 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         public async Task GoToCarritoPage()
         {
-          //  await Application.Current.MainPage.Navigation.PushAsync(new CarritoPage());  // Navega a CarritoPage
+          
+           await Application.Current.MainPage.Navigation.PushAsync(new ProductoListaPage(new ProductoListaViewModel(new ApiService())));
         }
 
         [RelayCommand]
         public async Task GoToPedidosPage()
         {
-            ///await Application.Current.MainPage.Navigation.PushAsync(new PedidosPage());  // Navega a PedidosPage
+            //await Application.Current.MainPage.Navigation.PushAsync(new PedidosPage());  // Navega a PedidosPage
         }
     }
 }
