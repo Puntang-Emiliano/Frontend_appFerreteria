@@ -34,12 +34,10 @@ public partial class ProductoAgregarViewModel : BaseViewModel
 
         var registro = new Producto
         {
-            Nombre = this.Nombre,
-            Descripcion = this.Descripcion,
-            Stock = this.Stock,
-            Precio = Convert.ToDecimal(this.Precio),
-            Categoria = this.CategoriaSeleccionada.Key,
-            RutaImagen = "producto.png"
+            nombre = this.Nombre,
+            descripcion = this.Descripcion,
+            stock = this.Stock,
+            precio = Convert.ToDecimal(this.Precio),            
         };
         
 

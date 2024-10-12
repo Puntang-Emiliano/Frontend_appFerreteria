@@ -1,50 +1,43 @@
-﻿using AppStore.mvvm.Models;
-using AppStore.mvvm.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using System.Text.Json;
+using AppStore.mvvm.Models;
+using System.Threading.Tasks;
+using AppStore.Models;
+using AppStore.mvvm.ViewModels;
+using AppStore.mvvm.Views;
 
-namespace AppStore.mvvm.ViewModels;
+namespace AppStore.mvvm.ViewModels
+{
+    public class ProductoListaViewModel
+    {
+        private readonly ApiService _apiService; // Inyección del ApiService
+        public ObservableCollection<Producto> Productos { get; } = new ObservableCollection<Producto>();
 
-public partial class ProductoListaViewModel : BaseViewModel
-{    
+        public ICommand CargarProductosCommand { get; }
 
-    [ObservableProperty] private ObservableCollection<Producto> _productos;
-    [ObservableProperty] private Producto _productoSeleccionado;
-    [ObservableProperty] private bool isRefreshing;
+        public ProductoListaViewModel(ApiService apiService)
+        {
+            _apiService = apiService;
+            CargarProductosCommand = new RelayCommand(async () => await OnCargarProductos());
+        }
 
-    //public ProductoListaViewModel()
-    //{
-    //    Title = Constants.AppName;
-        
-    //    Task.Run(async () => { await GetProductos(); }).Wait();
-    //}
-
-    //[RelayCommand]
-    //private async Task GetProductos()
-    //{
-    //    IsBusy = IsRefreshing = true;
-
-    //    var productos = await ApiService.GetProductos();
-
-    //    if (productos != null)
-    //    {
-    //        Productos = new ObservableCollection<Producto>(productos);
-    //    }        
-
-    //    IsBusy = IsRefreshing = false;
-    //}
-
-    //[RelayCommand]
-    //private async Task GoToDetalle()
-    //{
-    //    await Application.Current.MainPage.Navigation.PushAsync(new ProductoModificarPage());
-    //}
-
-    //[RelayCommand]
-    //private async Task NuevoProducto()
-    //{
-    //    await Application.Current.MainPage.Navigation.PushAsync(new ProductoAgregarPage());
-    //}
+        private async Task OnCargarProductos()
+        {
+            try
+            {
+                var productos = await _apiService.GetProductos();
+                Productos.Clear(); // Limpiar la colección existente
+                foreach (var producto in productos)
+                {
+                    Productos.Add(producto); // Agregar nuevos productos a la colección
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores (puedes mostrar un mensaje al usuario, etc.)
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
 }
