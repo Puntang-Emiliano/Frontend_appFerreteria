@@ -140,30 +140,30 @@ public class ApiService
 
 
 
-    
+
     public static async Task<bool> AgregarUsuario(Usuario _usuario)
     {
-        string FINAL_URL = BASE_URL + "usuario";
+        string FINAL_URL = BASE_URL + "usuarios";
         try
         {
             var content = new StringContent(
-                    JsonSerializer.Serialize(_usuario),
-                    Encoding.UTF8, "application/json"
-                );
+                JsonSerializer.Serialize(_usuario),
+                Encoding.UTF8, "application/json"
+            );
 
             var result = await httpClient.PostAsync(FINAL_URL, content).ConfigureAwait(false);
 
-
-
-            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            if (result.IsSuccessStatusCode) // Cambié aquí
             {
+                // Aquí puedes agregar lógica para obtener el ID o detalles del usuario creado
                 return true;
             }
             else
             {
-                return false;
+                // Puedes leer el mensaje de error de la respuesta para diagnosticar
+                var errorResponse = await result.Content.ReadAsStringAsync();
+                throw new Exception($"Error al agregar usuario: {errorResponse}");
             }
-
         }
         catch (Exception ex)
         {
@@ -171,45 +171,4 @@ public class ApiService
         }
     }
 
-    //public static async Task<Producto> GetProductoPorId(int id)
-    //{
-    //    // string FINAL_URL = BASE_URL + "Productos/ObtenerPorId/"+id;
-
-    //    string URL = "https://localhost:7028/api/Productos/ObtenerPorId/" + id;
-
-    //    try
-    //    {
-    //        var response = await httpClient.GetAsync(URL);
-    //        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-    //        {
-    //            var jsonData = await response.Content.ReadAsStringAsync();
-    //            if (!string.IsNullOrWhiteSpace(jsonData))
-    //            {
-    //                // Inside the ApiService class
-    //                var responseObject = JsonSerializer.Deserialize<List<Producto>>(jsonData,
-    //                    new JsonSerializerOptions
-    //                    {
-    //                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    //                        WriteIndented = true
-    //                    });
-    //                return responseObject!;
-    //            }
-    //            else
-    //            {
-    //                Exception exception = new Exception("Resource Not Found");
-    //                throw new Exception(exception.Message);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            Exception exception = new Exception("Request failed with status code " + response.StatusCode);
-    //            throw new Exception(exception.Message);
-    //        }
-    //    }
-    //    catch (Exception exception)
-    //    {
-    //        throw new Exception(exception.Message);
-    //    }
-    //}
-    //*/
 }

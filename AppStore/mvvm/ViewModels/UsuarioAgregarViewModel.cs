@@ -5,12 +5,12 @@ using CommunityToolkit.Mvvm.Input;
 using AppStore.mvvm.Models;
 using AppStore.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Win32;
 
 namespace AppStore.mvvm.ViewModels
 {
     public partial class UsuarioAgregarViewModel : BaseViewModel
     {
-
         private readonly ApiService _apiService; // Inyección del ApiService
         public ObservableCollection<Usuario> Usuarios { get; } = new ObservableCollection<Usuario>();
 
@@ -22,9 +22,9 @@ namespace AppStore.mvvm.ViewModels
 
         public UsuarioAgregarViewModel(ApiService apiService)
         {
+            _apiService = apiService; // Asigna el ApiService recibido por el constructor
             Title = Constants.AppName;
         }
-
 
         [RelayCommand]
         private async Task CancelarUsuario()
@@ -35,22 +35,18 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private async Task GrabarUsuario()
         {
-
-
-            var registro = new Usuario
+            var nuevoUsuario = new Usuario
             {
                 nombre = this.nombre,
                 email = this.email,
                 direccion = this.direccion,
                 rol = this.rol,
                 contraseña = this.contraseña
-               
             };
-
 
             try
             {
-                // await ApiService.AgregarProducto(registro);
+                await ApiService.AgregarUsuario(nuevoUsuario);
 
                 await Application.Current.MainPage.DisplayAlert("Exito", "Se nuevo Producto.", "Aceptar");
             }
