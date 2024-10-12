@@ -100,7 +100,40 @@ namespace AppStore
             }
         }
 
-        // Método para obtener la lista de usuarios
+    public static async Task<bool> AgregarUsuario(Usuario _usuario)
+    {
+        string FINAL_URL = BASE_URL + "usuarios";
+        try
+        {
+            var content = new StringContent(
+                JsonSerializer.Serialize(_usuario),
+                Encoding.UTF8, "application/json"
+            );
+
+            var result = await httpClient.PostAsync(FINAL_URL, content).ConfigureAwait(false);
+
+            if (result.IsSuccessStatusCode) // Cambié aquí
+            {
+                // Aquí puedes agregar lógica para obtener el ID o detalles del usuario creado
+                return true;
+               }
+            catch (Exception ex)
+            {
+              // Puedes leer el mensaje de error de la respuesta para diagnosticar
+                var errorResponse = await result.Content.ReadAsStringAsync();
+                throw new Exception($"Error al agregar usuario: {errorResponse}");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+}
+
+  
+    // Método para obtener la lista de usuarios
         public async Task<List<Usuario>> GetUsuarios()
         {
             string FINAL_URL = BASE_URL + "usuarios";
@@ -130,9 +163,6 @@ namespace AppStore
                 {
                     throw new Exception("Request failed with status code " + response.StatusCode);
                 }
-            }
-            catch (Exception ex)
-            {
                 throw new Exception(ex.Message);
             }
         }
@@ -212,3 +242,4 @@ namespace AppStore
         }
     }
 }
+
