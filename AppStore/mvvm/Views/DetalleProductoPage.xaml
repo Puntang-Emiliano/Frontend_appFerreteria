@@ -8,11 +8,11 @@
 
             <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*,*" ColumnSpacing="0">
 
-                <!-- Nombre -->
+               
                 <Label Text="Nombre" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
                 <Entry Text="{Binding Producto.nombre}" Grid.Column="1" Grid.Row="0" />
 
-                <!-- Descripción -->
+               
                 <Label 
                 Text="Descripción" 
                 Grid.Column="0" 
@@ -24,7 +24,7 @@
                 Grid.Column="1" 
                 Grid.Row="1" />
 
-                <!-- Precio -->
+               
                 <Label 
                 Text="Precio" 
                 Grid.Column="0" 
@@ -35,7 +35,7 @@
                 Grid.Column="1" 
                 Grid.Row="2" />
 
-                <!-- Imagen -->
+               
                 <HorizontalStackLayout Grid.Row="3" Spacing="10">
                     <Image 
                         Source="{Binding Producto.image}" 
@@ -61,7 +61,7 @@
             Margin="0,10" 
             Command="{Binding AgregarAlCarritoCommand}"/>
 
-            <!-- Botón Volver a Lista -->
+            
             <Button 
             Text="Volver a Lista" 
             Margin="0,10" 

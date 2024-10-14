@@ -35,7 +35,7 @@ namespace AppStore.mvvm.ViewModels
 
                             await Application.Current.MainPage.DisplayAlert("Atención", "Inicio de sesión exitoso", "Aceptar");
 
-                            // Navega a la siguiente página (por ejemplo, la lista de productos)
+                            
                             await Application.Current.MainPage.Navigation.PushAsync(new HomePage(new HomeViewModel()));
                         }
                         else

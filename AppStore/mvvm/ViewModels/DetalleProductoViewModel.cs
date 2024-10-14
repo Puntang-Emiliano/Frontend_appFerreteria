@@ -35,7 +35,7 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private void DisminuirCantidad()
         {
-            // Disminuir la cantidad en 1 si es mayor a 0
+           
             if (cantidad > 0)
             {
                 cantidad--;
@@ -45,9 +45,8 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private async Task AgregarAlCarrito()
         {
-            // Aquí deberías implementar la lógica para agregar el producto al carrito
-            // Simulación de agregar al carrito
-            await Task.Delay(500); // Simula el tiempo que tomaría agregar al carrito
+           
+            await Task.Delay(500); 
             await Application.Current.MainPage.DisplayAlert("Éxito", $"Se ha agregado {cantidad} de {Producto.nombre} al carrito.", "OK");
         }
     }
