@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 using AppStore.Models;
 using AppStore.mvvm.ViewModels;
 using AppStore.mvvm.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppStore.mvvm.ViewModels
 {
-    public class ProductoListaViewModel
+    public partial class ProductoListaViewModel : ObservableObject
     {
-        private readonly ApiService _apiService; // Inyección del ApiService
+        private readonly ApiService _apiService; 
         public ObservableCollection<Producto> Productos { get; } = new ObservableCollection<Producto>();
+
+        [ObservableProperty]
+        Producto productoSeleccionado;
 
         public ICommand CargarProductosCommand { get; }
 
@@ -27,16 +31,31 @@ namespace AppStore.mvvm.ViewModels
             try
             {
                 var productos = await _apiService.GetProductos();
-                Productos.Clear(); // Limpiar la colección existente
+                Productos.Clear(); 
                 foreach (var producto in productos)
                 {
-                    Productos.Add(producto); // Agregar nuevos productos a la colección
+                    Productos.Add(producto); 
                 }
             }
             catch (Exception ex)
             {
-                // Manejo de errores (puedes mostrar un mensaje al usuario, etc.)
+              
                 Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+      
+        partial void OnProductoSeleccionadoChanged(Producto value)
+        {
+            _ = GoToDetail(value); 
+        }
+
+        private async Task GoToDetail(Producto producto)
+        {
+            if (producto != null)
+            {
+               
+                await Application.Current.MainPage.Navigation.PushAsync(new DetalleProductoPage(producto)); // Crea la página con el producto seleccionado
             }
         }
     }
