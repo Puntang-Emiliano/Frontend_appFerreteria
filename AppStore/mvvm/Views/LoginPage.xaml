@@ -15,7 +15,7 @@
     </ContentPage.Background>
 
     <VerticalStackLayout Padding="30" Spacing="20">
-        <!-- Top Image -->
+      
         <Image Source="logo.png"
                Aspect="AspectFit"
                HeightRequest="150"
@@ -23,7 +23,7 @@
                VerticalOptions="Start"
                Margin="0,40,0,20"/>
 
-        <!-- Email Entry -->
+      
         <Entry Placeholder="Email" 
                PlaceholderColor="Gray"
                TextColor="Black"
@@ -34,7 +34,7 @@
                Margin="0,10"
                HeightRequest="50"/>
 
-        <!-- Password Entry -->
+       
         <Entry Placeholder="Contraseña" 
                IsPassword="True"
                PlaceholderColor="Gray"
@@ -45,7 +45,7 @@
                HeightRequest="50"
                Margin="0,10"/>
 
-        <!-- Login Button -->
+       
         <Button Text="Iniciar Sesión"
                 BackgroundColor="#0D3863"
                 TextColor="White"
@@ -54,23 +54,23 @@
                 CornerRadius="10"
                 Command="{Binding LoginCommand}" />
 
-        <!-- Message Label -->
+      
         <Label Text="{Binding Message}" 
                FontSize="Small" 
                TextColor="Red" 
                HorizontalOptions="Center" 
                VerticalOptions="Center" />
 
-        <!-- Activity Indicator -->
+      
         <ActivityIndicator IsVisible="{Binding IsBusy}" 
                            IsRunning="{Binding IsBusy}" 
                            HorizontalOptions="Center"/>
 
-        <!-- Social Login Section -->
+        
         <StackLayout Orientation="Vertical" HorizontalOptions="Center" Spacing="20">
             <Label Text="O continúe con" FontSize="14" TextColor="Black" HorizontalOptions="Center" />
 
-            <!-- Social Media Icons -->
+           
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
                 <ImageButton Source="google.png" WidthRequest="40" HeightRequest="40" />
                 <ImageButton Source="github.png" WidthRequest="40" HeightRequest="40" />

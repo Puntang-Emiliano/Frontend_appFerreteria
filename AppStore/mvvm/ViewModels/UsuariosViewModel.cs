@@ -10,7 +10,7 @@ namespace AppStore.ViewModels
 {
     public partial class UsuariosViewModel : BaseViewModel
     {
-        private readonly ApiService _apiService; // Inyección del ApiService
+        private readonly ApiService _apiService; 
         public ObservableCollection<Usuario> Usuarios { get; } = new ObservableCollection<Usuario>();
 
         public ICommand CargarUsuariosCommand { get; }
@@ -26,15 +26,15 @@ namespace AppStore.ViewModels
             try
             {
                 var usuarios = await _apiService.GetUsuarios();
-                Usuarios.Clear(); // Limpiar la colección existente
+                Usuarios.Clear(); 
                 foreach (var usuario in usuarios)
                 {
-                    Usuarios.Add(usuario); // Agregar nuevos usuarios a la colección
+                    Usuarios.Add(usuario); 
                 }
             }
             catch (Exception ex)
             {
-                // Manejo de errores (puedes mostrar un mensaje al usuario, etc.)
+               
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }

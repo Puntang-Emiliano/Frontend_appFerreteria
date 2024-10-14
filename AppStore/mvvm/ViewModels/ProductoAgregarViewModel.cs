@@ -43,7 +43,7 @@ public partial class ProductoAgregarViewModel : BaseViewModel
 
         try
         {
-           // await ApiService.AgregarProducto(registro);
+           
 
             await Application.Current.MainPage.DisplayAlert("Exito", "Se nuevo Producto.", "Aceptar");
         }

@@ -9,6 +9,8 @@ using System.Net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppStore.Models;
+using System.Net.Http.Headers;
+
 
 namespace AppStore
 {
@@ -201,5 +203,10 @@ namespace AppStore
                 throw new Exception(ex.Message);
             }
         }
+
+        // Metodo para Mostrar detalle de Productos
+
+        
+
     }
 }
