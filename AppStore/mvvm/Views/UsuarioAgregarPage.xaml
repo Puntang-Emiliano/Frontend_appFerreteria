@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStore.mvvm.Views.UsuarioAgregarPage"
+             Title="UsuarioAgregarView">
+    <VerticalStackLayout>
+        <StackLayout Margin="10" IsVisible="{Binding MostrarFormulario}">
+
+            <Entry Margin="5" TextColor="White" Placeholder="Nombre" Text="{Binding nombre}" />
+            <Entry Margin="5" TextColor="White" Placeholder="Email" Text="{Binding email}" />
+            <Entry Margin="5" TextColor="White" Placeholder="Dirección" Text="{Binding direccion}" />
+            <Entry Margin="5" TextColor="White" Placeholder="Rol" Text="{Binding rol}" />
+            <Entry Margin="5" Placeholder="Contraseña" Text="{Binding contraseña}" IsPassword="True" />
+
+            <!-- Botón para guardar el nuevo usuario -->
+            <Button 
+                Command="{Binding GrabarUsuarioCommand}"
+                Text="Grabar" 
+                Grid.Row="7" 
+                Grid.ColumnSpan="2" />
+            <Button 
+                Command="{Binding CancelarUsuarioCommand}"
+                Text="Cancelar" 
+                Grid.Row="8" 
+                Grid.ColumnSpan="2" 
+                BackgroundColor="DarkMagenta" 
+                TextColor="White"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

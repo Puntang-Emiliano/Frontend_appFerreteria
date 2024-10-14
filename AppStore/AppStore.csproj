@@ -67,6 +67,7 @@
 	  <None Remove="Resources\Images\product.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\usuario.png" />
+	  <None Remove="Resources\Images\usuarios.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,9 +79,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+
 	  <MauiXaml Update="mvvm\Views\DetalleProductoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+
+	//  <Compile Update="mvvm\Views\UsuarioAgregarPage.xaml.cs">
+	//    <DependentUpon>UsuarioAgregarPage.xaml</DependentUpon>
+//	  </Compile>
+//	</ItemGroup>
+
+//	<ItemGroup>
+
 	  <MauiXaml Update="mvvm\Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -94,6 +104,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="mvvm\Views\ProductoModificarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="mvvm\Views\UsuarioAgregarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="mvvm\Views\UsuariosPage.xaml">

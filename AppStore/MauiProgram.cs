@@ -24,6 +24,8 @@ namespace AppStore
             builder.Services.AddSingleton<ApiService>(); // Registra ApiService como singleton
             builder.Services.AddTransient<UsuariosViewModel>(); // Registra UsuariosViewModel como transient
             builder.Services.AddTransient<ProductoListaViewModel>();
+           IServiceCollection serviceCollection = builder.Services.AddTransient<UsuarioAgregarViewModel>(); // Registra UsuariosViewModel como transient
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
