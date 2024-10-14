@@ -51,10 +51,7 @@
                                        FontAttributes="Bold"
                                        FontSize="18"
                                        HorizontalOptions="Center" />
-                                <Label Text="{Binding descripcion}"
-                                       HorizontalOptions="Center"
-                                       FontSize="14"
-                                       LineBreakMode="TailTruncation" />
+                                
                                 <Label Text="{Binding precio, StringFormat='${0:F2}'}"
                                        FontAttributes="Bold"
                                        FontSize="16"

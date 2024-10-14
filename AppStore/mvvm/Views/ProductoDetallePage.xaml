@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppStore.mvvm.ViewModels"
+             x:Class="AppStore.mvvm.Views.ProductoDetallePage"
+             Title="Detalle del Producto">
+
+    <ContentPage.BindingContext>
+        <vm:ProductoDetalleViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20">
+        <Label Text="Detalle del Producto"
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="Start" />
+
+        <!-- Mostrar detalles del producto -->
+        <Label Text="{Binding Producto.nombre}" 
+               FontSize="18"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding Producto.descripcion}" 
+               FontSize="14"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding Producto.precio, StringFormat='${0:F2}'}"
+               FontSize="16"
+               TextColor="#B12E2E"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding Producto.stock, StringFormat='Stock: {0}'}"
+               FontSize="14"
+               TextColor="Gray"
+               HorizontalOptions="Center" />
+
+    </StackLayout>
+</ContentPage>

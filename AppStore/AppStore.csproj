@@ -79,18 +79,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="mvvm\Views\UsuarioAgregarPage.xaml.cs">
+	    <DependentUpon>UsuarioAgregarPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
 
-	  <MauiXaml Update="mvvm\Views\DetalleProductoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-
-	//  <Compile Update="mvvm\Views\UsuarioAgregarPage.xaml.cs">
-	//    <DependentUpon>UsuarioAgregarPage.xaml</DependentUpon>
-//	  </Compile>
-//	</ItemGroup>
-
-//	<ItemGroup>
-
+	<ItemGroup>
 	  <MauiXaml Update="mvvm\Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
