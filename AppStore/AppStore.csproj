@@ -95,6 +95,9 @@
 	  <MauiXaml Update="mvvm\Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="mvvm\Views\PedidosPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="mvvm\Views\ProductoAgregarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

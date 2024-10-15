@@ -36,7 +36,7 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         public async Task GoToPedidosPage()
         {
-            //await Application.Current.MainPage.Navigation.PushAsync(new PedidosPage());  // Navega a PedidosPage
+            await Application.Current.MainPage.Navigation.PushAsync(new PedidosPage()); 
         }
     }
 }

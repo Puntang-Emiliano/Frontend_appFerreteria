@@ -2,16 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStore.mvvm.Views.UsuariosPage"
-             Title="Usuarios">
+             Title="Usuarios"
+             BackgroundColor="Transparent"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <!-- Título de la página -->
+            
             <Label Text="Lista de Usuarios"
                    FontSize="24"
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
 
-            <!-- Botón para cargar usuarios -->
+           
             <Button Text="Cargar Usuarios"
                     Command="{Binding CargarUsuariosCommand}"
                     BackgroundColor="#B12E2E"
@@ -23,7 +33,7 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Start" />
 
-            <!-- Botón para mostrar/ocultar formulario de agregar usuario -->
+           
             <Button Text="Agregar Usuario"
                     Command="{Binding GoToUsuariosAgregarCommand}"
                     BackgroundColor="#2EB1B1"
@@ -35,10 +45,6 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Start" />
 
-            <!-- Formulario para agregar usuario, inicialmente oculto -->
-        
-
-            <!-- Lista de usuarios -->
             <ListView ItemsSource="{Binding Usuarios}" 
                       HasUnevenRows="True"
                       SeparatorVisibility="None"
@@ -58,7 +64,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <!-- Imagen circular -->
+                                   
                                     <Image Source="usuarios.png" 
                                            HeightRequest="50" 
                                            WidthRequest="50" 
@@ -70,7 +76,7 @@
                                         </Image.Clip>
                                     </Image>
 
-                                    <!-- Información de usuario -->
+                                    
                                     <StackLayout Grid.Column="1" Padding="10,0" VerticalOptions="Center">
                                         <Label Text="{Binding nombre}" 
                                                FontAttributes="Bold" 

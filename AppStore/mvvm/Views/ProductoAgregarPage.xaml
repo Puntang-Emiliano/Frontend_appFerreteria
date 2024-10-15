@@ -5,7 +5,8 @@
              xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
              x:DataType="viewModels:ProductoAgregarViewModel"
              xmlns:models="clr-namespace:AppStore.mvvm.Models"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             NavigationPage.HasNavigationBar="False">
     <ScrollView>
         <VerticalStackLayout Margin="10">
             <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*,*,*,*,*" RowSpacing="5">

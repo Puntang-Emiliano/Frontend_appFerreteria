@@ -5,7 +5,16 @@
              xmlns:vm="clr-namespace:AppStore.mvvm.ViewModels"
              xmlns:model="clr-namespace:AppStore.mvvm.Models"
              x:DataType="vm:ProductoListaViewModel"
-             Title="Lista de Productos">
+             BackgroundColor="Transparent"
+             Title="Lista de Productos"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
     <ContentPage.Content>
         <StackLayout Padding="20">
