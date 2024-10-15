@@ -8,8 +8,8 @@
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#B12E2E" Offset="1.0" />
-            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        <GradientStop Color="#B12E2E" Offset="1.0" />
+        <GradientStop Color="#CEC8C8" Offset="0.1" />
         </LinearGradientBrush>
     </ContentPage.Background>
     
