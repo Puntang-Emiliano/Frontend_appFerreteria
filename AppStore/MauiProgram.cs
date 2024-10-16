@@ -21,10 +21,10 @@ namespace AppStore
                 });
 
             // Registro de servicios
-            builder.Services.AddSingleton<ApiService>(); // Registra ApiService como singleton
-            builder.Services.AddTransient<UsuariosViewModel>(); // Registra UsuariosViewModel como transient
+            builder.Services.AddSingleton<ApiService>();
+            builder.Services.AddTransient<UsuariosViewModel>(); 
             builder.Services.AddTransient<ProductoListaViewModel>();
-           IServiceCollection serviceCollection = builder.Services.AddTransient<UsuarioAgregarViewModel>(); // Registra UsuariosViewModel como transient
+           IServiceCollection serviceCollection = builder.Services.AddTransient<UsuarioAgregarViewModel>(); 
 
 #if DEBUG
             builder.Logging.AddDebug();

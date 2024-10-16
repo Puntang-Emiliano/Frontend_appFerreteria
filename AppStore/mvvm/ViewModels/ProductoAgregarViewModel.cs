@@ -59,7 +59,7 @@ public partial class ProductoAgregarViewModel : BaseViewModel
 
     private List<Valor> GetCategoriasValues()
     {
-        // TODO: reemplazar por lista de valores de la base de datos
+       
         var categoriasValues = new List<Valor>()
         {
             new Valor { Key = 1, Value = "Alimentos" },

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AppStore.Models;
 using System.Net.Http.Headers;
+using AppStore.mvvm.Models.DTO;
 
 
 namespace AppStore
@@ -19,7 +20,7 @@ namespace AppStore
         private static readonly string BASE_URL = "http://localhost:5154/api/";
         static HttpClient httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(60) };
 
-        // Método para validar el login
+       
         public async Task<LoginResponseDto> ValidarLogin(string _email, string _contraseña)
         {
             string FINAL_URL = BASE_URL + "Usuarios/ValidarCredencial";
@@ -46,7 +47,7 @@ namespace AppStore
                             WriteIndented = true
                         });
 
-                    // Verifica si el usuario_id es 0
+                   
                     if (responseObject.usuario_id == 0)
                     {
                         throw new Exception("Credenciales incorrectas");
@@ -65,25 +66,28 @@ namespace AppStore
             }
         }
 
-        public static async Task<bool> AgregarUsuario(Usuario _usuario)
+        public static async Task<bool> AgregarUsuario(CrearUsuarioDTO _usuario)
         {
             string FINAL_URL = BASE_URL + "usuarios";
             try
             {
+              
+
                 var content = new StringContent(
                     JsonSerializer.Serialize(_usuario),
                     Encoding.UTF8, "application/json"
+
                 );
 
                 var result = await httpClient.PostAsync(FINAL_URL, content).ConfigureAwait(false);
 
-                if (result.IsSuccessStatusCode) // Cambié aquí
+                if (result.IsSuccessStatusCode) 
                 {
-                    // Aquí puedes agregar lógica para obtener el ID o detalles del usuario creado
+                   
                     return true;
                 }
 
-                // Puedes leer el mensaje de error de la respuesta para diagnosticar
+                
                 var errorResponse = await result.Content.ReadAsStringAsync();
                 throw new Exception($"Error al agregar usuario: {errorResponse}");
             }
@@ -93,7 +97,7 @@ namespace AppStore
             }
         }
 
-        // Método para obtener la lista de usuarios
+  
         public async Task<List<Usuario>> GetUsuarios()
         {
             string FINAL_URL = BASE_URL + "usuarios";
@@ -130,7 +134,7 @@ namespace AppStore
             }
         }
 
-        // Método para obtener la lista de productos
+     
         public async Task<List<Producto>> GetProductos()
         {
             string FINAL_URL = BASE_URL + "productos";
@@ -167,7 +171,7 @@ namespace AppStore
             }
         }
 
-        // Método para obtener un producto por su ID
+        
         public static async Task<Producto> GetProductoPorId(int id)
         {
             string FINAL_URL = BASE_URL + "productos/" + id;
@@ -204,7 +208,7 @@ namespace AppStore
             }
         }
 
-        // Metodo para Mostrar detalle de Productos
+        
 
         
 

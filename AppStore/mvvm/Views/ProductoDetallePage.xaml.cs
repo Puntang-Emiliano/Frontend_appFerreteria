@@ -11,7 +11,7 @@ namespace AppStore.mvvm.Views
             InitializeComponent();
         }
 
-        // Cambia "SelectedProducto" según el nombre correcto
+        
         public Producto SelectedProducto
         {
             set

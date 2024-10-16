@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppStore.mvvm.Views.PedidosPage"
+             Title="Pedidos"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="Auto, *" Padding="20">
+        <!-- Título de la página -->
+        <Label Text="Mis Pedidos"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="Black"
+               HorizontalOptions="Center"
+               Grid.Row="0" />
+
+        <!-- Lista de pedidos -->
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="20"
+                             VerticalOptions="Center"
+                             HorizontalOptions="FillAndExpand">
+            <Label Text="Aquí aparecerán tus pedidos realizados."
+                   FontSize="18"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <!-- Ejemplo de pedido -->
+            <Frame BorderColor="#B12E2E"
+                   CornerRadius="10"
+                   Padding="10"
+                   BackgroundColor="White"
+                   VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <Label Text="Pedido #12345"
+                           FontSize="20"
+                           TextColor="Black"
+                           FontAttributes="Bold" />
+                    <Label Text="Fecha: 12/10/2024"
+                           FontSize="16"
+                           TextColor="Gray" />
+                    <Label Text="Estado: Enviado"
+                           FontSize="16"
+                           TextColor="Green" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Otro ejemplo de pedido -->
+            <Frame BorderColor="#B12E2E"
+                   CornerRadius="10"
+                   Padding="10"
+                   BackgroundColor="White"
+                   VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <Label Text="Pedido #12346"
+                           FontSize="20"
+                           TextColor="Black"
+                           FontAttributes="Bold" />
+                    <Label Text="Fecha: 10/10/2024"
+                           FontSize="16"
+                           TextColor="Gray" />
+                    <Label Text="Estado: Procesando"
+                           FontSize="16"
+                           TextColor="Orange" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -2,9 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStore.mvvm.Views.DetalleProductoPage"
-             Title="Detalle Producto">
+             Title="Detalle Producto"
+             BackgroundColor="Transparent"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#B12E2E" Offset="1.0" />
+        <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
     <ScrollView>
         <VerticalStackLayout Margin="10">
+            <Label Text="Detalle Productos"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start" />
 
             <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*,*" ColumnSpacing="0">
 
@@ -48,22 +62,30 @@
 
 
             <HorizontalStackLayout Margin="0,20" HorizontalOptions="Center" Spacing="10">
-                <Button Text="-" Command="{Binding DisminuirCantidadCommand}" WidthRequest="40"/>
+                <Button Text="-" Command="{Binding DisminuirCantidadCommand}" WidthRequest="40" BackgroundColor="#2EB1B1"/>
 
-  
-                <Label Text="{Binding Cantidad}" VerticalOptions="Center" FontSize="Large" HorizontalOptions="Center" WidthRequest="50" />
 
-                <Button Text="+" Command="{Binding AumentarCantidadCommand}" WidthRequest="40"/>
+                <Label Text="{Binding Cantidad}" 
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" 
+                        FontSize="Large" 
+                        WidthRequest="50"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center" />
+
+                <Button Text="+" Command="{Binding AumentarCantidadCommand}" WidthRequest="40" BackgroundColor="#2EB1B1"/>
             </HorizontalStackLayout>
 
             <Button 
-            Text="Agregar al carrito" 
+            Text="Agregar al carrito"
+            BackgroundColor="#2EB1B1"
             Margin="0,10" 
             Command="{Binding AgregarAlCarritoCommand}"/>
 
             
             <Button 
             Text="Volver a Lista" 
+            BackgroundColor="#2EB1B1"
             Margin="0,10" 
             Command="{Binding GoBackCommand}"/>
 

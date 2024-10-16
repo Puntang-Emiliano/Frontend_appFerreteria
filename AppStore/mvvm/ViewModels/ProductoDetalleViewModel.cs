@@ -21,12 +21,12 @@ namespace AppStore.mvvm.ViewModels
 
         public ProductoDetalleViewModel()
         {
-            // Constructor vacío por si necesitas lógica de inicialización
+          
         }
 
         public void CargarProducto(Producto producto)
         {
-            Producto = producto; // Aquí asignamos el producto a la propiedad pública
+            Producto = producto; 
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

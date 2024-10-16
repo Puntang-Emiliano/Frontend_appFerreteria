@@ -55,7 +55,7 @@ namespace AppStore.mvvm.ViewModels
             if (producto != null)
             {
                
-                await Application.Current.MainPage.Navigation.PushAsync(new DetalleProductoPage(producto)); // Crea la página con el producto seleccionado
+                await Application.Current.MainPage.Navigation.PushAsync(new DetalleProductoPage(producto)); 
             }
         }
     }

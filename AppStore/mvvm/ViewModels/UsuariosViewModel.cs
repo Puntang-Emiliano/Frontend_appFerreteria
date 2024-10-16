@@ -10,7 +10,7 @@ namespace AppStore.ViewModels
 {
     public partial class UsuariosViewModel : BaseViewModel
     {
-        private readonly ApiService _apiService; 
+        private readonly ApiService _apiService;
         public ObservableCollection<Usuario> Usuarios { get; } = new ObservableCollection<Usuario>();
 
         public ICommand CargarUsuariosCommand { get; }
@@ -26,23 +26,23 @@ namespace AppStore.ViewModels
             try
             {
                 var usuarios = await _apiService.GetUsuarios();
-                Usuarios.Clear(); 
+                Usuarios.Clear();
                 foreach (var usuario in usuarios)
                 {
-                    Usuarios.Add(usuario); 
+                    Usuarios.Add(usuario);
                 }
             }
             catch (Exception ex)
             {
-               
+
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
         [RelayCommand]
         public async Task GoToUsuariosAgregar()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new UsuarioAgregarPage(new UsuarioAgregarViewModel(new ApiService())));  // Navega a UsuariosPage
-        }
+            await Application.Current.MainPage.Navigation.PushAsync(new UsuarioAgregarPage(new UsuarioAgregarViewModel(new ApiService())));
 
+        }
     }
 }

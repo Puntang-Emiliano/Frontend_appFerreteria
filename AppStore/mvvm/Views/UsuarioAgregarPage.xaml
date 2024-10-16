@@ -2,29 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStore.mvvm.Views.UsuarioAgregarPage"
-             Title="UsuarioAgregarView">
+             xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
+             x:DataType="viewModels:UsuarioAgregarViewModel"
+             Title="UsuarioAgregarView"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    
+    
+
     <VerticalStackLayout>
-        <StackLayout Margin="10" IsVisible="{Binding MostrarFormulario}">
+        <StackLayout Margin="10">
 
-            <Entry Margin="5" TextColor="White" Placeholder="Nombre" Text="{Binding nombre}" />
-            <Entry Margin="5" TextColor="White" Placeholder="Email" Text="{Binding email}" />
-            <Entry Margin="5" TextColor="White" Placeholder="Dirección" Text="{Binding direccion}" />
-            <Entry Margin="5" TextColor="White" Placeholder="Rol" Text="{Binding rol}" />
-            <Entry Margin="5" Placeholder="Contraseña" Text="{Binding contraseña}" IsPassword="True" />
+            <Label Text="Agregar Usuario"
+        FontSize="24"
+        HorizontalOptions="Center"
+        VerticalOptions="Start" />
 
-            <!-- Botón para guardar el nuevo usuario -->
+
+
+
+            <Entry Margin="5" TextColor="Black" Placeholder="Nombre" PlaceholderColor="Black" Text="{Binding Nombre }" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Email" PlaceholderColor="Black" Text="{Binding Email}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Dirección"  PlaceholderColor="Black" Text="{Binding Direccion}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Rol"  PlaceholderColor="Black" Text="{Binding Rol}" />
+            <Entry Margin="5" Placeholder="Contraseña"  PlaceholderColor="Black" Text="{Binding Contraseña}" IsPassword="True" />
+
+            
             <Button 
                 Command="{Binding GrabarUsuarioCommand}"
                 Text="Grabar" 
                 Grid.Row="7" 
-                Grid.ColumnSpan="2" />
+                 BackgroundColor="#2EB1B1"
+                Grid.ColumnSpan="2"
+                Margin="5"/>
             <Button 
                 Command="{Binding CancelarUsuarioCommand}"
                 Text="Cancelar" 
                 Grid.Row="8" 
                 Grid.ColumnSpan="2" 
-                BackgroundColor="DarkMagenta" 
-                TextColor="White"/>
+                BackgroundColor="red" 
+                TextColor="White"
+                Margin="5"/>
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

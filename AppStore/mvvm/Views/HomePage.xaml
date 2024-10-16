@@ -5,12 +5,13 @@
              x:Class="AppStore.mvvm.Views.HomePage"
              x:DataType="viewModels:HomeViewModel"
              Title="{Binding Title}"
-             BackgroundColor="Transparent">
+             BackgroundColor="Transparent"
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
             <GradientStop Color="#B12E2E" Offset="1.0" />
-            <GradientStop Color="#FFFFFF" Offset="0.1" />
+            <GradientStop Color="#CEC8C8" Offset=".01" />
         </LinearGradientBrush>
     </ContentPage.Background>
 

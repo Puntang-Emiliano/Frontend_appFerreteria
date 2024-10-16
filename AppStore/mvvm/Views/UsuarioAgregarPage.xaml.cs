@@ -8,7 +8,7 @@ namespace AppStore.mvvm.Views
         public UsuarioAgregarPage(UsuarioAgregarViewModel viewModel)
         {
             InitializeComponent();
-            BindingContext = viewModel; // Establecer el contexto de enlace
+            BindingContext = viewModel; 
         }
     }
 }
