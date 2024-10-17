@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             x:Class="AppStore.mvvm.Views.UsuarioDetallePage"
+             Title="Detalle del Usuario">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    
+    <ScrollView>
+        <VerticalStackLayout Margin="10">
+
+            <Label Text="Detalle del Usuario"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start" />
+
+           
+            <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*" ColumnSpacing="0">
+
+         
+                <Label Text="Nombre" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
+                <Entry Text="{Binding Usuario.nombre}" Grid.Column="1" Grid.Row="0" />
+
+ 
+                <Label Text="Correo" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" />
+                <Entry Text="{Binding Usuario.email}" Grid.Column="1" Grid.Row="1" />
+
+           
+                <Label Text="Dirección" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" />
+                <Entry Text="{Binding Usuario.direccion}" Grid.Column="1" Grid.Row="2" />
+
+             
+                <Label Text="Rol" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" />
+                <Entry Text="{Binding Usuario.rol}" Grid.Column="1" Grid.Row="3" />
+
+                
+                <HorizontalStackLayout Grid.Row="4" Spacing="10" Grid.ColumnSpan="2">
+                    <Image 
+                        Source="usuarios.png" 
+                        WidthRequest="200"
+                        HeightRequest="200"
+                        Aspect="AspectFit"
+                        HorizontalOptions="Center"/>
+                </HorizontalStackLayout>
+
+            </Grid>
+
+            <!-- Botón de Volver -->
+            <Button 
+                Text="Volver a la Lista"
+                BackgroundColor="#2EB1B1"
+                Margin="0,20"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

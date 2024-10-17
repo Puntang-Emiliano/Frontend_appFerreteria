@@ -221,6 +221,43 @@ namespace AppStore
             }
         }
 
+        public static async Task<Usuario> GetUsuarioPorId(int id)
+        {
+            string FINAL_URL = BASE_URL + "usuarios/" + id;
+
+            try
+            {
+                var response = await httpClient.GetAsync(FINAL_URL);
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonData = await response.Content.ReadAsStringAsync();
+                    if (!string.IsNullOrWhiteSpace(jsonData))
+                    {
+                        var responseObject = JsonSerializer.Deserialize<Usuario>(jsonData,
+                            new JsonSerializerOptions
+                            {
+                                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                                WriteIndented = true
+                            });
+                        return responseObject!;
+                    }
+                    else
+                    {
+                        throw new Exception("Resource Not Found");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Request failed with status code " + response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
 
         public async Task EditarUsuario(Usuario usuario)
         {

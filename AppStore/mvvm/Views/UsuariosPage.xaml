@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
-             x:Class="AppStore.mvvm.Views.UsuariosPage"
-             Title="{Binding Title}"             
+             x:Class="AppStore.mvvm.Views.UsuariosPage"             
+             xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"             
              BackgroundColor="Transparent"
+             Title="Lista de Usuarios"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Background>
@@ -44,7 +44,9 @@
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Start" />
 
-            <ListView ItemsSource="{Binding Usuarios}" 
+            <ListView ItemsSource="{Binding Usuarios}"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding UsuarioSeleccionado}"
                       HasUnevenRows="True"
                       SeparatorVisibility="None"
                       VerticalOptions="FillAndExpand">
@@ -60,9 +62,9 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
-                                        <!-- Imagen -->
+                                      
                                         <ColumnDefinition Width="*"/>
-                                        <!-- Información -->
+                                    
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
@@ -90,11 +92,11 @@
                                                TextColor="Gray"/>
                                     </StackLayout>
 
-                                    <!-- StackLayout para los botones Editar y Eliminar -->
+                               
                                     <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="End" VerticalOptions="Center">
                                         <Button Text="Editar" 
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarUsuarioCommand}" 
-                                                CommandParameter="{Binding .}" 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarUsuariosCommand}" 
+                                                CommandParameter="{Binding id}" 
                                                 BackgroundColor="#7C4DFF" 
                                                 TextColor="White"
                                                 FontAttributes="Bold"
@@ -104,7 +106,7 @@
                                                 WidthRequest="80"/>
                                         <Button Text="Eliminar"
                                                 Command="{Binding EliminarUsuarioCommand}"
-                                                CommandParameter="{Binding usuario_id}" 
+                                                CommandParameter="{Binding id}" 
                                                 BackgroundColor="Red"
                                                 TextColor="White"
                                                 FontAttributes="Bold"
