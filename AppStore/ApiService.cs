@@ -1,16 +1,9 @@
 ﻿using AppStore.mvvm.Models;
-using System.Net.Http;
-using System;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Net.Http.Json;
 using System.Text;
-using System.Net;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AppStore.Models;
-using System.Net.Http.Headers;
 using AppStore.mvvm.Models.DTO;
+using CommunityToolkit.Mvvm.Input;
 
 
 namespace AppStore
@@ -171,7 +164,27 @@ namespace AppStore
             }
         }
 
-        
+        public static async Task<bool> EliminarUsuario(int usuario_id)
+        {
+            string FINAL_URL = BASE_URL + $"usuarios/{usuario_id}";
+            try
+            {
+                var result = await httpClient.DeleteAsync(FINAL_URL).ConfigureAwait(false);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                var errorResponse = await result.Content.ReadAsStringAsync();
+                throw new Exception($"Error al eliminar usuario: {errorResponse}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static async Task<Producto> GetProductoPorId(int id)
         {
             string FINAL_URL = BASE_URL + "productos/" + id;
@@ -208,9 +221,20 @@ namespace AppStore
             }
         }
 
-        
 
-        
+        public async Task EditarUsuario(Usuario usuario)
+        {
+            var json = JsonSerializer.Serialize(usuario);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PutAsync($"api/usuarios/{usuario.usuario_id}", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error al editar el usuario: " + response.ReasonPhrase);
+            }
+        }
+
 
     }
 }
