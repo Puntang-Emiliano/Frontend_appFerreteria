@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
              x:Class="AppStore.mvvm.Views.UsuariosPage"
-             Title="Usuarios"
+             Title="{Binding Title}"             
              BackgroundColor="Transparent"
              NavigationPage.HasNavigationBar="False">
 
@@ -15,25 +16,23 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20">
-            
+
             <Label Text="Lista de Usuarios"
                    FontSize="24"
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
 
-           
             <Button Text="Cargar Usuarios"
                     Command="{Binding CargarUsuariosCommand}"
                     BackgroundColor="#B12E2E"
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="10"
-                      Margin="5"
+                    Margin="5"
                     Padding="10"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Start" />
 
-           
             <Button Text="Agregar Usuario"
                     Command="{Binding GoToUsuariosAgregarCommand}"
                     BackgroundColor="#2EB1B1"
@@ -61,10 +60,12 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
+                                        <!-- Imagen -->
                                         <ColumnDefinition Width="*"/>
+                                        <!-- Información -->
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                   
                                     <Image Source="usuarios.png" 
                                            HeightRequest="50" 
                                            WidthRequest="50" 
@@ -76,19 +77,43 @@
                                         </Image.Clip>
                                     </Image>
 
-                                    
                                     <StackLayout Grid.Column="1" Padding="10,0" VerticalOptions="Center">
                                         <Label Text="{Binding nombre}" 
                                                FontAttributes="Bold" 
                                                FontSize="18"
                                                TextColor="Black"/>
-                                        <Label Text="{Binding email}" 
+                                        <Label Text="{Binding direccion}" 
                                                FontSize="14" 
                                                TextColor="Gray"/>
                                         <Label Text="{Binding rol}" 
                                                FontSize="14" 
                                                TextColor="Gray"/>
                                     </StackLayout>
+
+                                    <!-- StackLayout para los botones Editar y Eliminar -->
+                                    <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="End" VerticalOptions="Center">
+                                        <Button Text="Editar" 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarUsuarioCommand}" 
+                                                CommandParameter="{Binding .}" 
+                                                BackgroundColor="#7C4DFF" 
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                CornerRadius="10"
+                                                Padding="5"
+                                                Margin="5"
+                                                WidthRequest="80"/>
+                                        <Button Text="Eliminar"
+                                                Command="{Binding EliminarUsuarioCommand}"
+                                                CommandParameter="{Binding usuario_id}" 
+                                                BackgroundColor="Red"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                CornerRadius="10"
+                                                Padding="5"
+                                                Margin="5"
+                                                WidthRequest="80" />
+                                    </StackLayout>
+
                                 </Grid>
                             </Frame>
                         </ViewCell>
