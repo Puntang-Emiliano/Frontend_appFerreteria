@@ -112,10 +112,13 @@
 	  <MauiXaml Update="mvvm\Views\ProductoListaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="mvvm\Views\ProductoModificarPage.xaml">
+	  <MauiXaml Update="mvvm\Views\UsuarioAgregarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="mvvm\Views\UsuarioAgregarPage.xaml">
+	  <MauiXaml Update="mvvm\Views\UsuarioDetallePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="mvvm\Views\UsuarioEditarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="mvvm\Views\UsuariosPage.xaml">
