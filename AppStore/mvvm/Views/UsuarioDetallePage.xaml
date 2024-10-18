@@ -11,7 +11,6 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    
     <ScrollView>
         <VerticalStackLayout Margin="20">
 
@@ -20,50 +19,44 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
 
-           
             <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*" ColumnSpacing="0">
 
-         
                 <Label Text="Nombre" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
                 <Entry Text="{Binding Usuario.nombre}" Grid.Column="1" Grid.Row="0" />
 
- 
                 <Label Text="Correo" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" />
                 <Entry Text="{Binding Usuario.email}" Grid.Column="1" Grid.Row="1" />
 
-           
                 <Label Text="Dirección" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" />
                 <Entry Text="{Binding Usuario.direccion}" Grid.Column="1" Grid.Row="2" />
 
-             
                 <Label Text="Rol" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" />
                 <Entry Text="{Binding Usuario.rol}" Grid.Column="1" Grid.Row="3" />
 
-                
-            
-
+                <Label Text="Contraseña" Grid.Column="0" Grid.Row="4" VerticalOptions="Center" />
+                <Entry Text="{Binding Usuario.contraseña}" IsPassword="true" Placeholder="Contraseña" PlaceholderColor="Black" Grid.Column="1" Grid.Row="4" />
             </Grid>
 
-            <Button Text="Editar" 
-           Command="{Binding EditarUsuarioCommand}" 
-           CommandParameter="{Binding id}" 
-           BackgroundColor="#2EB1B1" 
-           TextColor="black"
-           FontAttributes="Bold"
-           CornerRadius="10"
-           Padding="5"
-           Margin="25"
-           WidthRequest="80"/>
+                        <Button Text="Editar" 
+                    Command="{Binding EditarUsuarioCommand}" 
+                    CommandParameter="{Binding id}" 
+                    BackgroundColor="#2EB1B1" 
+                    TextColor="black"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="5"
+                    Margin="25"
+                    WidthRequest="80"/>
             <Button Text="Eliminar"
-           Command="{Binding EliminarUsuarioCommand}"
-           CommandParameter="{Binding id}" 
-           BackgroundColor="#2EB1B1"
-           TextColor="black"
-           FontAttributes="Bold"
-           CornerRadius="10"
-           Padding="5"
-           Margin="5"
-           WidthRequest="80" />
+                    Command="{Binding EliminarUsuarioCommand}"
+                    CommandParameter="{Binding id}" 
+                    BackgroundColor="#2EB1B1"
+                    TextColor="black"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="5"
+                    Margin="5"
+                    WidthRequest="80" />
             <Button 
                 Text="Volver a la Lista"
                 BackgroundColor="#2EB1B1"
@@ -71,7 +64,6 @@
                 Margin="0,20"
                 Command="{Binding GoBackCommand}"
                 HorizontalOptions="Center" />
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

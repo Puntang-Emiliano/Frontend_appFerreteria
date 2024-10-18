@@ -15,7 +15,7 @@ namespace AppStore.mvvm.ViewModels
         Usuario usuarioSeleccionado;
 
         private readonly ApiService _apiService; // Servicio para manejar usuarios
-        public ICommand EditarUsuariosCommand { get; }
+      
         public UsuarioDetalleViewModel(Usuario usuarioSeleccionado, ApiService _apiService)
         {
             Title = "Detalle de usuario";
@@ -29,9 +29,32 @@ namespace AppStore.mvvm.ViewModels
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        public async Task EditarUsuario()
+        [RelayCommand]
+        private async Task EditarUsuarioAsync()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new UsuarioEditarPage(new UsuarioEditarViewModel(new ApiService())));
+            // Confirmación de edición
+            bool confirmacion = await Application.Current.MainPage.DisplayAlert("Confirmar",
+                                "¿Seguro que deseas editar este usuario?", "Sí", "No");
+
+            if (confirmacion)
+            {
+                try
+                {
+                    // Llama al servicio API para editar el usuario
+                    await _apiService.EditarUsuario(Usuario);
+
+                    // Muestra un mensaje de éxito
+                    await Application.Current.MainPage.DisplayAlert("Éxito", "El usuario fue editado correctamente", "OK");
+
+                    // Vuelve a la página anterior
+                    await GoBack();
+                }
+                catch (Exception ex)
+                {
+                    // Muestra un mensaje de error en caso de fallo
+                    await Application.Current.MainPage.DisplayAlert("Error", $"No se pudo editar el usuario: {ex.Message}", "OK");
+                }
+            }
         }
 
         [RelayCommand]

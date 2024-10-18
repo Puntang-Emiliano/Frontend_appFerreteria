@@ -49,11 +49,6 @@ namespace AppStore.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new UsuarioAgregarPage(new UsuarioAgregarViewModel(new ApiService())));
         }
 
-        public async Task EditarUsuario()
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new UsuarioEditarPage(new UsuarioEditarViewModel(new ApiService())));
-        }
-
         partial void OnUsuarioSeleccionadoChanged(Usuario value)
         {
             _ = GoToDetail(value);
