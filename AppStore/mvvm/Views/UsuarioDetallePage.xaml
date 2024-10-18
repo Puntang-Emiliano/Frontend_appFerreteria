@@ -13,7 +13,7 @@
 
     
     <ScrollView>
-        <VerticalStackLayout Margin="10">
+        <VerticalStackLayout Margin="20">
 
             <Label Text="Detalle del Usuario"
                    FontSize="24"
@@ -40,21 +40,34 @@
                 <Entry Text="{Binding Usuario.rol}" Grid.Column="1" Grid.Row="3" />
 
                 
-                <HorizontalStackLayout Grid.Row="4" Spacing="10" Grid.ColumnSpan="2">
-                    <Image 
-                        Source="usuarios.png" 
-                        WidthRequest="200"
-                        HeightRequest="200"
-                        Aspect="AspectFit"
-                        HorizontalOptions="Center"/>
-                </HorizontalStackLayout>
+            
 
             </Grid>
 
-            <!-- Botón de Volver -->
+            <Button Text="Editar" 
+           Command="{Binding EditarUsuarioCommand}" 
+           CommandParameter="{Binding id}" 
+           BackgroundColor="#2EB1B1" 
+           TextColor="black"
+           FontAttributes="Bold"
+           CornerRadius="10"
+           Padding="5"
+           Margin="25"
+           WidthRequest="80"/>
+            <Button Text="Eliminar"
+           Command="{Binding EliminarUsuarioCommand}"
+           CommandParameter="{Binding id}" 
+           BackgroundColor="#2EB1B1"
+           TextColor="black"
+           FontAttributes="Bold"
+           CornerRadius="10"
+           Padding="5"
+           Margin="5"
+           WidthRequest="80" />
             <Button 
                 Text="Volver a la Lista"
                 BackgroundColor="#2EB1B1"
+                TextColor="black"
                 Margin="0,20"
                 Command="{Binding GoBackCommand}"
                 HorizontalOptions="Center" />
