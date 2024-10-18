@@ -49,11 +49,6 @@ namespace AppStore.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new UsuarioAgregarPage(new UsuarioAgregarViewModel(new ApiService())));
         }
 
-        public async Task EditarUsuario()
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new UsuarioEditarPage(new UsuarioEditarViewModel(new ApiService())));
-        }
-
         partial void OnUsuarioSeleccionadoChanged(Usuario value)
         {
             _ = GoToDetail(value);
@@ -63,12 +58,20 @@ namespace AppStore.ViewModels
         {
             if (usuario != null)
             {
-                var usuarioDetalleViewModel = new UsuarioDetalleViewModel(usuario);
+                // Pasa el usuario seleccionado y el servicio al ViewModel de detalles
+                var usuarioDetalleViewModel = new UsuarioDetalleViewModel(usuario, _apiService); // Asegúrate de pasar el ApiService aquí
                 var detallePage = new UsuarioDetallePage { BindingContext = usuarioDetalleViewModel };
 
                 await Application.Current.MainPage.Navigation.PushAsync(detallePage);
             }
         }
+        //private async Task GoToDetail(Usuario usuario) NO ANDA
+        //{
+        //    if (usuario != null)
+        //    {
+        //        await Application.Current.MainPage.Navigation.PushAsync(new UsuarioDetallePage());
+        //    }
+        //}
 
     }
 }

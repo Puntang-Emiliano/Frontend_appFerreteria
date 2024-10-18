@@ -45,7 +45,7 @@ public partial class ProductoAgregarViewModel : BaseViewModel
         {
            
 
-            await Application.Current.MainPage.DisplayAlert("Exito", "Se nuevo Producto.", "Aceptar");
+            await Application.Current.MainPage.DisplayAlert("Exito", "Usuario añadido correctamente.", "Aceptar");
         }
         catch (Exception ex)
         {

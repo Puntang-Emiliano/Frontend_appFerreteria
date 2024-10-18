@@ -258,17 +258,19 @@ namespace AppStore
         }
 
 
-
         public async Task EditarUsuario(Usuario usuario)
         {
+            string FINAL_URL = BASE_URL + $"usuarios/{usuario.usuario_id}"; // Asegúrate de concatenar correctamente la URL completa.
+
             var json = JsonSerializer.Serialize(usuario);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PutAsync($"api/usuarios/{usuario.usuario_id}", content);
+            var response = await httpClient.PutAsync(FINAL_URL, content); // Utiliza la URL completa.
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error al editar el usuario: " + response.ReasonPhrase);
+                var errorResponse = await response.Content.ReadAsStringAsync();
+                throw new Exception("Error al editar el usuario: " + errorResponse);
             }
         }
 
