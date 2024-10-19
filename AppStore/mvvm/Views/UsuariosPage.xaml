@@ -93,28 +93,7 @@
                                     </StackLayout>
 
                                
-                                    <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="End" VerticalOptions="Center">
-                                        <Button Text="Editar" 
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarUsuariosCommand}" 
-                                                CommandParameter="{Binding id}" 
-                                                BackgroundColor="#7C4DFF" 
-                                                TextColor="White"
-                                                FontAttributes="Bold"
-                                                CornerRadius="10"
-                                                Padding="5"
-                                                Margin="5"
-                                                WidthRequest="80"/>
-                                        <Button Text="Eliminar"
-                                                Command="{Binding EliminarUsuarioCommand}"
-                                                CommandParameter="{Binding id}" 
-                                                BackgroundColor="Red"
-                                                TextColor="White"
-                                                FontAttributes="Bold"
-                                                CornerRadius="10"
-                                                Padding="5"
-                                                Margin="5"
-                                                WidthRequest="80" />
-                                    </StackLayout>
+                                 
 
                                 </Grid>
                             </Frame>
