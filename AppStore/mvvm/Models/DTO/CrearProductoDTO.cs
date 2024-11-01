@@ -8,13 +8,13 @@ namespace AppStore.mvvm.Models.DTO
 {
     public class CrearProductoDTO
     {
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public decimal Precio { get; set; }
-        public int Stock { get; set; }
-        public int CategoriaId { get; set; } 
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
+        public decimal precio { get; set; }
+        public int stock { get; set; }
+        public int categoriaId { get; set; } 
         
-        public string Marca { get; set; }
-        public string Imagen { get; set; }  
+        public string marca { get; set; }
+        public string imagen { get; set; }  
     }
 }

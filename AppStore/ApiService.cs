@@ -275,7 +275,7 @@ namespace AppStore
         }
 
 
-        public static async Task<bool> AgregarProducto(CrearProductoDTO producto)
+        public static async Task<bool> AgregarProducto(Producto producto)
         {
            string FINAL_URL = BASE_URL + "productos";
            

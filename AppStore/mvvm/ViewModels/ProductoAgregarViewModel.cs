@@ -56,15 +56,15 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private async Task GrabarProducto()
         {
-            var nuevoProducto = new CrearProductoDTO
+            var nuevoProducto = new Producto
             {
-                Nombre = this.nombre,
-                Descripcion = this.descripcion,
-                Precio = this.precio,
-                Stock = this.stock,
-                CategoriaId = this.categoriaId,
-                Marca = this.marca,
-                Imagen = this.imagen
+                nombre = this.nombre,
+                descripcion = this.descripcion,
+                precio = this.precio,
+                stock = this.stock,
+                categoria_id = this.categoriaId,
+                marca = this.marca,
+                imagen = this.imagen
             };
 
             try
