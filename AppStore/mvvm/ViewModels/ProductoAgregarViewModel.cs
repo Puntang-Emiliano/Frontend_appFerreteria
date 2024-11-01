@@ -1,74 +1,65 @@
-﻿using AppStore.mvvm.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
+using AppStore.mvvm.Models;
+using AppStore.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using AppStore.mvvm.Models.DTO;
 
-namespace AppStore.mvvm.ViewModels;
-
-public partial class ProductoAgregarViewModel : BaseViewModel
+namespace AppStore.mvvm.ViewModels
 {
-    [ObservableProperty] private string nombre;
-    [ObservableProperty] private string descripcion;
-    [ObservableProperty] private int stock;
-    [ObservableProperty] private float precio;
-    [ObservableProperty] List<Valor> listaCategorias;
-    [ObservableProperty] private Valor categoriaSeleccionada;
-
-    public ProductoAgregarViewModel()
+    public partial class ProductoAgregarViewModel : BaseViewModel
     {
-        Title = Constants.AppName;
-        listaCategorias = GetCategoriasValues();
-    }
+        private readonly ApiService _apiService;
+        public ObservableCollection<CrearProductoDTO> ProductosCrear { get; set; } = new ObservableCollection<CrearProductoDTO>();
+        public ObservableCollection<Producto> Productos { get; set; } = new ObservableCollection<Producto>();
 
+        [ObservableProperty] private string nombre;
+        [ObservableProperty] private string descripcion;
+        [ObservableProperty] private decimal precio;
+        [ObservableProperty] private int stock;
+        [ObservableProperty] private int categoriaId;
+        [ObservableProperty] private string marca;
+        [ObservableProperty] private string imagen; // Nueva propiedad para la imagen
 
-    [RelayCommand]
-    private async Task Cancelar()
-    {
-        await Application.Current.MainPage.Navigation.PopAsync();
-    }
-
-    [RelayCommand]
-    private async Task GrabarProducto()
-    {
-        
-
-        var registro = new Producto
+        public ProductoAgregarViewModel(ApiService apiService)
         {
-            nombre = this.Nombre,
-            descripcion = this.Descripcion,
-            stock = this.Stock,
-            precio = Convert.ToDecimal(this.Precio),            
-        };
-        
-
-        try
-        {
-           
-
-            await Application.Current.MainPage.DisplayAlert("Exito", "Usuario añadido correctamente.", "Aceptar");
+            _apiService = apiService;
+            Title = Constants.AppName;
         }
-        catch (Exception ex)
+
+        [RelayCommand]
+        private async Task CancelarProducto()
         {
-            await Application.Current.MainPage.DisplayAlert("Error", "ERROR al grabar.", "Aceptar");
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
-      
-        await Application.Current.MainPage.Navigation.PopAsync();
 
-
-    }
-
-    private List<Valor> GetCategoriasValues()
-    {
-       
-        var categoriasValues = new List<Valor>()
+        [RelayCommand]
+        private async Task GrabarProducto()
         {
-            new Valor { Key = 1, Value = "Alimentos" },
-            new Valor { Key = 2, Value = "Bebidas" },
-            new Valor { Key = 3, Value = "Limpieza" },
-            new Valor { Key = 4, Value = "Higiene" },
-            new Valor { Key = 5, Value = "Varios" }
-        };
+            var _producto = new CrearProductoDTO
+            {
+                Nombre = this.nombre,
+                Descripcion = this.descripcion,
+                Precio = this.precio,
+                Stock = this.stock,
+                CategoriaId = this.categoriaId,
+                Marca = this.marca,
+                Imagen = this.imagen // Añadir la imagen aquí
+            };
 
-        return categoriasValues;
+            try
+            {
+                await ApiService.AgregarProducto(_producto);
+                await Application.Current.MainPage.DisplayAlert("Éxito", "Nuevo producto agregado.", "Aceptar");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Aceptar");
+            }
+
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
     }
 }

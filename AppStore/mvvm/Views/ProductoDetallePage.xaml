@@ -1,39 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:AppStore.mvvm.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
              x:Class="AppStore.mvvm.Views.ProductoDetallePage"
              Title="Detalle del Producto">
 
-    <ContentPage.BindingContext>
-        <vm:ProductoDetalleViewModel />
-    </ContentPage.BindingContext>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-    <StackLayout Padding="20">
-        <Label Text="Detalle del Producto"
-               FontSize="24"
-               HorizontalOptions="Center"
-               VerticalOptions="Start" />
+    <ScrollView>
+        <VerticalStackLayout Margin="20">
 
-        <!-- Mostrar detalles del producto -->
-        <Label Text="{Binding Producto.nombre}" 
-               FontSize="18"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+            <Label Text="Detalle del Producto"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start" />
 
-        <Label Text="{Binding Producto.descripcion}" 
-               FontSize="14"
-               HorizontalOptions="Center" />
+            <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*,*,*" ColumnSpacing="0">
 
-        <Label Text="{Binding Producto.precio, StringFormat='${0:F2}'}"
-               FontSize="16"
-               TextColor="#B12E2E"
-               HorizontalOptions="Center" />
+                <Label Text="Nombre" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.nombre}" Grid.Column="1" Grid.Row="0" />
 
-        <Label Text="{Binding Producto.stock, StringFormat='Stock: {0}'}"
-               FontSize="14"
-               TextColor="Gray"
-               HorizontalOptions="Center" />
+                <Label Text="Descripción" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.descripcion}" Grid.Column="1" Grid.Row="1" />
 
-    </StackLayout>
+                <Label Text="Precio" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.precio}" Grid.Column="1" Grid.Row="2" Keyboard="Numeric" />
+
+                <Label Text="Categoría" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.categoria}" Grid.Column="1" Grid.Row="3" />
+
+                <Label Text="Stock" Grid.Column="0" Grid.Row="4" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.stock}" Grid.Column="1" Grid.Row="4" Keyboard="Numeric" />
+
+                <Label Text="Marca" Grid.Column="0" Grid.Row="5" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.marca}" Grid.Column="1" Grid.Row="5" />
+
+                <Label Text="Imagen" Grid.Column="0" Grid.Row="6" VerticalOptions="Center" />
+                <Entry Text="{Binding Producto.imagen}" Grid.Column="1" Grid.Row="6" />
+            </Grid>
+
+            <Button Text="Editar" 
+                    Command="{Binding EditarProductoCommand}" 
+                    CommandParameter="{Binding Producto.id}" 
+                    BackgroundColor="#2EB1B1" 
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="5"
+                    Margin="25"
+                    WidthRequest="80"/>
+
+            <Button Text="Eliminar"
+                    Command="{Binding EliminarProductoCommand}"
+                    CommandParameter="{Binding Producto.id}" 
+                    BackgroundColor="#2EB1B1"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Padding="5"
+                    Margin="5"
+                    WidthRequest="80" />
+
+            <Button Text="Volver a la Lista"
+                    BackgroundColor="#2EB1B1"
+                    TextColor="Black"
+                    Margin="0,20"
+                    Command="{Binding GoBackCommand}"
+                    HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

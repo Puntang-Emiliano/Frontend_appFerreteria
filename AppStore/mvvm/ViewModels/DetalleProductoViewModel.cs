@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
+using AppStore.Models;
 
 namespace AppStore.mvvm.ViewModels
 {
@@ -13,10 +14,15 @@ namespace AppStore.mvvm.ViewModels
         [ObservableProperty]
         private int cantidad = 0;
 
+        // Nueva propiedad para el detalle
+        [ObservableProperty]
+        private string detalle;
+
         public DetalleProductoViewModel(Producto productoSeleccionado)
         {
             Title = "Detalle de Producto";
             producto = productoSeleccionado;
+            detalle = producto.descripcion; // O puedes establecer el detalle aquí
         }
 
         [RelayCommand]
@@ -28,14 +34,12 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private void AumentarCantidad()
         {
-            
             cantidad++;
         }
 
         [RelayCommand]
         private void DisminuirCantidad()
         {
-           
             if (cantidad > 0)
             {
                 cantidad--;
@@ -45,8 +49,7 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private async Task AgregarAlCarrito()
         {
-           
-            await Task.Delay(500); 
+            await Task.Delay(500);
             await Application.Current.MainPage.DisplayAlert("Éxito", $"Se ha agregado {cantidad} de {Producto.nombre} al carrito.", "OK");
         }
     }

@@ -1,51 +1,46 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppStore.mvvm.Views.ProductoAgregarPage"
              xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"
              x:DataType="viewModels:ProductoAgregarViewModel"
-             xmlns:models="clr-namespace:AppStore.mvvm.Models"
-             Title="{Binding Title}"
+             Title="Agregar Producto"
              NavigationPage.HasNavigationBar="False">
-    <ScrollView>
-        <VerticalStackLayout Margin="10">
-            <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*,*,*,*,*" RowSpacing="5">
 
-                <Label 
-                    Margin="0,5,0,10"
-                    Text="Agregar Producto" 
-                    FontSize="Large" 
-                    HorizontalOptions="Center" 
-                    Grid.ColumnSpan="2" 
-                    TextColor="BlueViolet" />   
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-                <Label Text="Nombre" Grid.Column="0" Grid.Row="1" VerticalOptions="End" />
-                <Entry Grid.Column="1" Grid.Row="1" VerticalOptions="End" Text="{Binding Nombre}"/>
+    <VerticalStackLayout>
+        <StackLayout Margin="10">
 
-                <Label Text="Descripcion" Grid.Column="0" Grid.Row="2" VerticalOptions="End"/>
-                <Entry Grid.Column="1" Grid.Row="2" VerticalOptions="End" Text="{Binding Descripcion}"/>
+            <Label Text="Agregar Producto"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start" />
 
-                <Label Text="Precio" Grid.Column="0" Grid.Row="3" VerticalOptions="End"/>
-                <Entry Grid.Column="1" Grid.Row="3" VerticalOptions="End" Text="{Binding Precio}"/>
+            <Entry Margin="5" TextColor="Black" Placeholder="Nombre" PlaceholderColor="Black" Text="{Binding Nombre}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Descripción" PlaceholderColor="Black" Text="{Binding Descripcion}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Precio" PlaceholderColor="Black" Keyboard="Numeric" Text="{Binding Precio}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Marca" PlaceholderColor="Black" Text="{Binding Marca}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Categoría ID" PlaceholderColor="Black" Keyboard="Numeric" Text="{Binding CategoriaId}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Stock" PlaceholderColor="Black" Keyboard="Numeric" Text="{Binding Stock}" />
+            <Entry Margin="5" TextColor="Black" Placeholder="Ruta de la Imagen" PlaceholderColor="Black" Text="{Binding Imagen}" />
+            <!-- Campo para la imagen -->
 
-                <Label Text="Stock" Grid.Column="0" Grid.Row="4" VerticalOptions="End"/>
-                <Entry Grid.Column="1" Grid.Row="4" VerticalOptions="End" Text="{Binding Stock}"/>           
-
-                <Image Source="product.png" Margin="0,10" HeightRequest="150" HorizontalOptions="Center" Grid.Row="6" Grid.ColumnSpan="2" />
-
-                <Button 
-                    Command="{Binding GrabarProductoCommand}"
-                    Text="Grabar" 
-                    Grid.Row="7" 
-                    Grid.ColumnSpan="2" />
-                        <Button 
-                    Command="{Binding CancelarCommand}"
-                    Text="Cancelar" 
-                    Grid.Row="8" 
-                    Grid.ColumnSpan="2" 
-                    BackgroundColor="DarkMagenta" 
-                    TextColor="White"/>
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+            <Button 
+                Command="{Binding GrabarProductoCommand}"
+                Text="Grabar" 
+                BackgroundColor="#2EB1B1"
+                Margin="5"/>
+            <Button 
+                Command="{Binding CancelarProductoCommand}"
+                Text="Cancelar" 
+                BackgroundColor="Red" 
+                TextColor="White"
+                Margin="5"/>
+        </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

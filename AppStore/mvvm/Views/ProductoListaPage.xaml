@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppStore.mvvm.Views.ProductoListaPage"
-             xmlns:vm="clr-namespace:AppStore.mvvm.ViewModels"
-             xmlns:model="clr-namespace:AppStore.mvvm.Models"
-             x:DataType="vm:ProductoListaViewModel"
+             x:Class="AppStore.mvvm.Views.ProductoListaPage"             
+             xmlns:viewModels="clr-namespace:AppStore.mvvm.ViewModels"             
              BackgroundColor="Transparent"
              Title="Lista de Productos"
              NavigationPage.HasNavigationBar="False">
@@ -18,6 +16,7 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20">
+
             <Label Text="Lista de Productos"
                    FontSize="24"
                    HorizontalOptions="Center"
@@ -29,52 +28,74 @@
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="10"
+                    Margin="5"
                     Padding="10"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Start" />
 
-            <CollectionView ItemsSource="{Binding Productos}"
-                            SelectionMode="Single"
-                            SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}">
-                <CollectionView.EmptyView>
-                    <StackLayout Padding="100">
-                        <Label Text="No hay productos disponibles." 
-                               HorizontalOptions="Center" 
-                               VerticalOptions="Center" />
-                    </StackLayout>
-                </CollectionView.EmptyView>
+            <Button Text="Agregar Producto"
+                    Command="{Binding GoToProductoAgregarCommand}"
+                    BackgroundColor="#2EB1B1"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Margin="5"
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start" />
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Producto">
-                        <Frame BorderColor="#D1D1D1"
-                               CornerRadius="10"
-                               Padding="10"
-                               Margin="5">
-                            <StackLayout Orientation="Vertical" Spacing="10">
-                                <!--<Image Source="{Binding imagen}"
-                                       Aspect="AspectFill"
-                                       HeightRequest="150"
-                                       WidthRequest="150"
-                                       HorizontalOptions="Center" />-->
-                                <Label Text="{Binding nombre}"
-                                       FontAttributes="Bold"
-                                       FontSize="18"
-                                       HorizontalOptions="Center" />
-                                
-                                <Label Text="{Binding precio, StringFormat='${0:F2}'}"
-                                       FontAttributes="Bold"
-                                       FontSize="16"
-                                       TextColor="#B12E2E"
-                                       HorizontalOptions="Center" />
-                                <Label Text="{Binding stock, StringFormat='Stock: {0}'}"
-                                       TextColor="Gray"
-                                       FontSize="Small"
-                                       HorizontalOptions="Center" />
-                            </StackLayout>
-                        </Frame>
+            <ListView ItemsSource="{Binding Productos}"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding ProductoSeleccionado}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="10,5"
+                                   Padding="10"
+                                   CornerRadius="20"
+                                   HasShadow="True"
+                                   BorderColor="LightGray"
+                                   BackgroundColor="#FFECECEC">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="productos.png" 
+                                           HeightRequest="50" 
+                                           WidthRequest="50" 
+                                           Aspect="AspectFill" 
+                                           HorizontalOptions="Start" 
+                                           VerticalOptions="Center">
+                                        <Image.Clip>
+                                            <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
+                                        </Image.Clip>
+                                    </Image>
+
+                                    <StackLayout Grid.Column="1" Padding="10,0" VerticalOptions="Center">
+                                        <Label Text="{Binding nombre}" 
+                                               FontAttributes="Bold" 
+                                               FontSize="18"
+                                               TextColor="Black"/>
+                                        <Label Text="{Binding descripcion}" 
+                                               FontSize="14" 
+                                               TextColor="Gray"/>
+                                        <Label Text="{Binding precio, StringFormat='Precio: {0:C}'}" 
+                                               FontSize="14" 
+                                               TextColor="Gray"/>
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

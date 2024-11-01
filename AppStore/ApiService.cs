@@ -260,12 +260,12 @@ namespace AppStore
 
         public async Task EditarUsuario(Usuario usuario)
         {
-            string FINAL_URL = BASE_URL + $"usuarios/{usuario.usuario_id}"; // Asegúrate de concatenar correctamente la URL completa.
+            string FINAL_URL = BASE_URL + $"usuarios/{usuario.usuario_id}"; 
 
             var json = JsonSerializer.Serialize(usuario);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PutAsync(FINAL_URL, content); // Utiliza la URL completa.
+            var response = await httpClient.PutAsync(FINAL_URL, content);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -273,6 +273,62 @@ namespace AppStore
                 throw new Exception("Error al editar el usuario: " + errorResponse);
             }
         }
+
+
+        public static async Task<bool> AgregarProducto(CrearProductoDTO producto)
+        {
+            string FINAL_URL = BASE_URL + "productos";
+
+            try
+            {
+                var content = new StringContent(
+                    JsonSerializer.Serialize(producto),
+                    Encoding.UTF8, "application/json"
+                );
+
+                var result = await httpClient.PostAsync(FINAL_URL, content).ConfigureAwait(false);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                var errorResponse = await result.Content.ReadAsStringAsync();
+
+                throw new Exception($"Error al agregar producto: {result.StatusCode}, Detalles: {errorResponse}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en AgregarProducto: {ex.Message}");
+            }
+        }
+
+
+
+        public async Task EditarProducto(Producto producto)
+        {
+            string FINAL_URL = BASE_URL + $"productos/{producto.producto_id}";
+
+            try
+            {
+                var json = JsonSerializer.Serialize(producto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PutAsync(FINAL_URL, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorResponse = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error al editar el producto: {errorResponse}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Ocurrió un error al intentar editar el producto: {ex.Message}");
+            }
+        }
+
+
 
 
     }

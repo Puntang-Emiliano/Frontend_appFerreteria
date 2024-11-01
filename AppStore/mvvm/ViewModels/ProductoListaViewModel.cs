@@ -10,15 +10,16 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AppStore.mvvm.ViewModels
 {
-    public partial class ProductoListaViewModel : ObservableObject
+    public partial class ProductoListaViewModel : BaseViewModel
     {
-        private readonly ApiService _apiService; 
+        private readonly ApiService _apiService;
         public ObservableCollection<Producto> Productos { get; } = new ObservableCollection<Producto>();
 
         [ObservableProperty]
-        Producto productoSeleccionado;
+        private Producto productoSeleccionado;
 
         public ICommand CargarProductosCommand { get; }
+        public ICommand EditarProductosCommand { get; }
 
         public ProductoListaViewModel(ApiService apiService)
         {
@@ -31,32 +32,39 @@ namespace AppStore.mvvm.ViewModels
             try
             {
                 var productos = await _apiService.GetProductos();
-                Productos.Clear(); 
+                Productos.Clear();
                 foreach (var producto in productos)
                 {
-                    Productos.Add(producto); 
+                    Productos.Add(producto);
                 }
             }
             catch (Exception ex)
             {
-              
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
-      
+        [RelayCommand]
+        public async Task GoToProductoAgregar()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new ProductoAgregarPage(new ProductoAgregarViewModel(new ApiService())));
+        }
+
         partial void OnProductoSeleccionadoChanged(Producto value)
         {
-            _ = GoToDetail(value); 
+            _ = GoToDetail(value);
         }
 
         private async Task GoToDetail(Producto producto)
         {
             if (producto != null)
             {
-               
-                await Application.Current.MainPage.Navigation.PushAsync(new DetalleProductoPage(producto)); 
+                var productoDetalleViewModel = new ProductoDetalleViewModel(producto, _apiService);
+                var detallePage = new ProductoDetallePage { BindingContext = productoDetalleViewModel };
+
+                await Application.Current.MainPage.Navigation.PushAsync(detallePage);
             }
         }
     }
 }
+

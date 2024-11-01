@@ -59,7 +59,7 @@ namespace AppStore.ViewModels
             if (usuario != null)
             {
                 // Pasa el usuario seleccionado y el servicio al ViewModel de detalles
-                var usuarioDetalleViewModel = new UsuarioDetalleViewModel(usuario, _apiService); // Asegúrate de pasar el ApiService aquí
+                var usuarioDetalleViewModel = new UsuarioDetalleViewModel(usuario, _apiService);
                 var detallePage = new UsuarioDetallePage { BindingContext = usuarioDetalleViewModel };
 
                 await Application.Current.MainPage.Navigation.PushAsync(detallePage);
