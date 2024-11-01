@@ -61,27 +61,27 @@ namespace AppStore.mvvm.ViewModels
             }
         }
 
-        //[RelayCommand]
-        //private async Task EliminarProductoAsync()
-        //{
-        //    // Confirmar eliminación
-        //    bool confirmacion = await Application.Current.MainPage.DisplayAlert("Confirmar",
-        //                        "¿Seguro que deseas eliminar este producto?", "Sí", "No");
-        //    if (confirmacion)
-        //    {
-        //        // Lógica para eliminar el producto
-        //        bool resultado = await ApiService.EliminarProducto(Producto.producto_id); // Asegúrate de que Producto tenga una propiedad producto_id
-        //        if (resultado)
-        //        {
-        //            await Application.Current.MainPage.DisplayAlert("Éxito", "El producto fue eliminado correctamente", "OK");
-        //            await GoBack(); // Vuelve a la página anterior después de eliminar
-        //        }
-        //        else
-        //        {
-        //            await Application.Current.MainPage.DisplayAlert("Error", "No se pudo eliminar el producto", "OK");
-        //        }
-        //    }
-        //}
+        [RelayCommand]
+        private async Task EliminarProductoAsync()
+        {
+            // Confirmar eliminación
+            bool confirmacion = await Application.Current.MainPage.DisplayAlert("Confirmar",
+                                "¿Seguro que deseas eliminar este producto?", "Sí", "No");
+            if (confirmacion)
+            {
+                // Lógica para eliminar el producto
+                bool resultado = await ApiService.EliminarProducto(Producto.producto_id); // Asegúrate de que Producto tenga una propiedad producto_id
+                if (resultado)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Éxito", "El producto fue eliminado correctamente", "OK");
+                    await GoBack(); // Vuelve a la página anterior después de eliminar
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "No se pudo eliminar el producto", "OK");
+                }
+            }
+        }
 
         public void CargarProducto(Producto producto)
         {

@@ -50,7 +50,7 @@ namespace AppStore.mvvm.ViewModels
             {
                 await ApiService.AgregarUsuario(_usuario);
 
-                await Application.Current.MainPage.DisplayAlert("Exito", "Se nuevo Producto.", "Aceptar");
+                await Application.Current.MainPage.DisplayAlert("Exito", "Se un nuevo Producto.", "Aceptar");
             }
             catch (Exception ex)
             {

@@ -1,19 +1,19 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using AppStore.mvvm.Models;
+using AppStore.mvvm.Models.DTO;
 using AppStore.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using AppStore.mvvm.Models.DTO;
+using AppStore.mvvm.Models;
 
 namespace AppStore.mvvm.ViewModels
 {
     public partial class ProductoAgregarViewModel : BaseViewModel
     {
         private readonly ApiService _apiService;
-        public ObservableCollection<CrearProductoDTO> ProductosCrear { get; set; } = new ObservableCollection<CrearProductoDTO>();
-        public ObservableCollection<Producto> Productos { get; set; } = new ObservableCollection<Producto>();
+
+        public ObservableCollection<Categoria> Categorias { get; set; } = new ObservableCollection<Categoria>();
 
         [ObservableProperty] private string nombre;
         [ObservableProperty] private string descripcion;
@@ -21,12 +21,30 @@ namespace AppStore.mvvm.ViewModels
         [ObservableProperty] private int stock;
         [ObservableProperty] private int categoriaId;
         [ObservableProperty] private string marca;
-        [ObservableProperty] private string imagen; // Nueva propiedad para la imagen
+        [ObservableProperty] private string imagen;
 
         public ProductoAgregarViewModel(ApiService apiService)
         {
             _apiService = apiService;
-            Title = Constants.AppName;
+            Title = "Agregar Producto";
+            CargarCategorias();
+        }
+
+        public async Task CargarCategorias()
+        {
+            try
+            {
+                var categorias = await _apiService.ObtenerCategorias();
+                Categorias.Clear();
+                foreach (var categoria in categorias)
+                {
+                    Categorias.Add(categoria);
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"Error al cargar categorías: {ex.Message}", "Aceptar");
+            }
         }
 
         [RelayCommand]
@@ -38,7 +56,7 @@ namespace AppStore.mvvm.ViewModels
         [RelayCommand]
         private async Task GrabarProducto()
         {
-            var _producto = new CrearProductoDTO
+            var nuevoProducto = new CrearProductoDTO
             {
                 Nombre = this.nombre,
                 Descripcion = this.descripcion,
@@ -46,20 +64,19 @@ namespace AppStore.mvvm.ViewModels
                 Stock = this.stock,
                 CategoriaId = this.categoriaId,
                 Marca = this.marca,
-                Imagen = this.imagen // Añadir la imagen aquí
+                Imagen = this.imagen
             };
 
             try
             {
-                await ApiService.AgregarProducto(_producto);
-                await Application.Current.MainPage.DisplayAlert("Éxito", "Nuevo producto agregado.", "Aceptar");
+                await ApiService.AgregarProducto(nuevoProducto);
+                await Application.Current.MainPage.DisplayAlert("Éxito", "Producto agregado correctamente.", "Aceptar");
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Aceptar");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Error al agregar producto: {ex.Message}", "Aceptar");
             }
-
-            await Application.Current.MainPage.Navigation.PopAsync();
         }
     }
 }

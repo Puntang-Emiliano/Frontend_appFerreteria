@@ -8,11 +8,11 @@
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="#B12E2E" Offset="1.0" />
-        <GradientStop Color="#CEC8C8" Offset="0.1" />
+            <GradientStop Color="#B12E2E" Offset="1.0" />
+            <GradientStop Color="#CEC8C8" Offset="0.1" />
         </LinearGradientBrush>
     </ContentPage.Background>
-    
+
     <ScrollView>
         <VerticalStackLayout Margin="10">
             <Label Text="Detalle Productos"
@@ -22,11 +22,11 @@
 
             <Grid ColumnDefinitions=".3*,.7*" RowDefinitions="*,*,*,*,*,*" ColumnSpacing="0">
 
-               
+
                 <Label Text="Nombre" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
                 <Entry Text="{Binding Producto.nombre}" Grid.Column="1" Grid.Row="0" />
 
-               
+
                 <Label 
                 Text="Descripción" 
                 Grid.Column="0" 
@@ -38,7 +38,7 @@
                 Grid.Column="1" 
                 Grid.Row="1" />
 
-               
+
                 <Label 
                 Text="Precio" 
                 Grid.Column="0" 
@@ -49,7 +49,7 @@
                 Grid.Column="1" 
                 Grid.Row="2" />
 
-               
+
                 <HorizontalStackLayout Grid.Row="3" Spacing="10">
                     <Image 
                         Source="{Binding Producto.image}" 
@@ -82,7 +82,7 @@
             Margin="0,10" 
             Command="{Binding AgregarAlCarritoCommand}"/>
 
-            
+
             <Button 
             Text="Volver a Lista" 
             BackgroundColor="#2EB1B1"

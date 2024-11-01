@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AppStore.mvvm.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppStore.Models
 {
@@ -12,7 +13,7 @@ namespace AppStore.Models
 
         // Relación con Categoria
         public int categoria_id { get; set; }
-        //public Categoria Categoria { get; set; }
+        public Categoria Categoria { get; set; }
 
         public string marca { get; set; }
 

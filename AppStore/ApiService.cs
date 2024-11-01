@@ -13,7 +13,7 @@ namespace AppStore
         private static readonly string BASE_URL = "http://localhost:5154/api/";
         static HttpClient httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(60) };
 
-       
+
         public async Task<LoginResponseDto> ValidarLogin(string _email, string _contraseña)
         {
             string FINAL_URL = BASE_URL + "Usuarios/ValidarCredencial";
@@ -40,7 +40,7 @@ namespace AppStore
                             WriteIndented = true
                         });
 
-                   
+
                     if (responseObject.usuario_id == 0)
                     {
                         throw new Exception("Credenciales incorrectas");
@@ -64,7 +64,7 @@ namespace AppStore
             string FINAL_URL = BASE_URL + "usuarios";
             try
             {
-              
+
 
                 var content = new StringContent(
                     JsonSerializer.Serialize(_usuario),
@@ -74,13 +74,13 @@ namespace AppStore
 
                 var result = await httpClient.PostAsync(FINAL_URL, content).ConfigureAwait(false);
 
-                if (result.IsSuccessStatusCode) 
+                if (result.IsSuccessStatusCode)
                 {
-                   
+
                     return true;
                 }
 
-                
+
                 var errorResponse = await result.Content.ReadAsStringAsync();
                 throw new Exception($"Error al agregar usuario: {errorResponse}");
             }
@@ -90,7 +90,7 @@ namespace AppStore
             }
         }
 
-  
+
         public async Task<List<Usuario>> GetUsuarios()
         {
             string FINAL_URL = BASE_URL + "usuarios";
@@ -127,7 +127,7 @@ namespace AppStore
             }
         }
 
-     
+
         public async Task<List<Producto>> GetProductos()
         {
             string FINAL_URL = BASE_URL + "productos";
@@ -260,7 +260,7 @@ namespace AppStore
 
         public async Task EditarUsuario(Usuario usuario)
         {
-            string FINAL_URL = BASE_URL + $"usuarios/{usuario.usuario_id}"; 
+            string FINAL_URL = BASE_URL + $"usuarios/{usuario.usuario_id}";
 
             var json = JsonSerializer.Serialize(usuario);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -277,7 +277,8 @@ namespace AppStore
 
         public static async Task<bool> AgregarProducto(CrearProductoDTO producto)
         {
-            string FINAL_URL = BASE_URL + "productos";
+           string FINAL_URL = BASE_URL + "productos";
+           
 
             try
             {
@@ -294,14 +295,18 @@ namespace AppStore
                 }
 
                 var errorResponse = await result.Content.ReadAsStringAsync();
-
                 throw new Exception($"Error al agregar producto: {result.StatusCode}, Detalles: {errorResponse}");
+            }
+            catch (HttpRequestException httpEx)
+            {
+                throw new Exception($"Error de conexión al intentar agregar producto: {httpEx.Message}");
             }
             catch (Exception ex)
             {
                 throw new Exception($"Error en AgregarProducto: {ex.Message}");
             }
         }
+
 
 
 
@@ -329,6 +334,62 @@ namespace AppStore
         }
 
 
+        //metodo para taer id Categorias
+        public async Task<List<Categoria>> ObtenerCategorias()
+        {
+            string url = BASE_URL + "categorias";
+
+            try
+            {
+                var response = await httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                var categorias = JsonSerializer.Deserialize<List<Categoria>>(jsonResponse, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+                if (categorias == null)
+                {
+                    throw new Exception("No se pudo obtener la lista de categorías.");
+                }
+
+                return categorias;
+            }
+            catch (HttpRequestException httpEx)
+            {
+                throw new Exception($"Error de conexión al obtener categorías: {httpEx.Message}");
+            }
+            catch (JsonException jsonEx)
+            {
+                throw new Exception($"Error en el formato de datos al obtener categorías: {jsonEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener categorías: {ex.Message}");
+            }
+        }
+
+        //Eliminar producto
+ public static async Task<bool> EliminarProducto(int producto_id)
+ {
+     string FINAL_URL = BASE_URL + $"productos/{producto_id}";
+     try
+     {
+         var result = await httpClient.DeleteAsync(FINAL_URL).ConfigureAwait(false);
+
+         if (result.IsSuccessStatusCode)
+         {
+             return true;
+         }
+
+         var errorResponse = await result.Content.ReadAsStringAsync();
+         throw new Exception($"Error al eliminar producto: {errorResponse}");
+     }
+     catch (Exception ex)
+     {
+         throw new Exception(ex.Message);
+     }
+ }
 
 
     }
